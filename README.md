@@ -4,14 +4,15 @@
 
 ## 👥 Thành viên nhóm & Phân công vai trò
 
-**Lớp:** 3A · **Phòng:** ____ · **Cụm:** ____ · **Track:** ____
+**Lớp:** 3A · **Phòng:** ____ · **Cụm:** ____ · **Track:** A · VLearn Tutor — A2 (VLearn Ready)
 
 | Họ và Tên | Mã Học Viên | Vai trò chính | Phần việc đảm nhiệm trong dự án |
 |---|---|---|---|
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
+| Trần Nguyễn Thái Duy | 2A202602991 | Evidence | Khảo sát/phỏng vấn học viên + mining transcript/slide, ghi log evidence CP1 |
+| Đinh Mạnh Dũng | 2A202602975 | Spec | Viết spec.md: prerequisite definition, product scope, bảng impact 3 candidates |
+| Nguyễn Hồng Phi | 2A202602750 | AI | Prompt/retrieval/grounding: extract outcomes, classify Required/Helpful/Taught, route nguồn |
+| Phạm Thành Trung | 2A202602949 | Prototype | UI/interaction: mock CP2 (`vlearn-ready-cp2.html`), flow bấm thử, Prep Card |
+| Từ Hoàng Giang | 2A202602363 | Evaluation & Demo | Hard tests + golden set, số đo CP3, validation R6, slide + demo CP5/CP6 |
 
 > Nhóm copy nguyên file README này về repo của mình, rồi điền bảng trên. Cột **Phần việc đảm nhiệm** ghi càng cụ thể càng tốt.
 
