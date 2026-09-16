@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VLearn Ready — Interactive Lesson Prep Prototype</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0f19;
+      color: #f3f4f6;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(31, 41, 55, 0.5);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #4b5563;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #6b7280;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.03); }
+    }
+    .pulse-glow {
+      animation: pulseGlow 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#0B0F19] text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Global Header -->
+  <header class="border-b border-slate-800/80 bg-slate-900/90 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo & Concept Tag -->
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center font-black text-white shadow-lg shadow-indigo-500/20">
+          VL
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-base tracking-tight text-white">VLearn Ready</span>
+            <span class="text-xs px-2 py-0.5 rounded-full font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">AI Tutor A2 Prototype</span>
+          </div>
+          <p class="text-[11px] text-slate-400">GenAI Masterclass • Track: Lesson Preparation</p>
+        </div>
+      </div>
+
+      <!-- Quick Step Navigator for Demo / Hackathon evaluation -->
+      <div class="hidden md:flex items-center gap-1 bg-slate-800/90 p-1 rounded-xl border border-slate-700/60 text-xs">
+        <button onclick="goToStep('dashboard')" id="btn-step-dashboard" class="step-nav-btn px-3 py-1.5 rounded-lg transition font-medium text-white bg-indigo-600 shadow">
+          1. Đề cương
+        </button>
+        <button onclick="goToStep('pipeline')" id="btn-step-pipeline" class="step-nav-btn px-3 py-1.5 rounded-lg transition font-medium text-slate-300 hover:text-white">
+          2. AI Pipeline
+        </button>
+        <button onclick="goToStep('prepcard')" id="btn-step-prepcard" class="step-nav-btn px-3 py-1.5 rounded-lg transition font-medium text-slate-300 hover:text-white">
+          3. Lesson Prep Card
+        </button>
+        <button onclick="goToStep('readiness')" id="btn-step-readiness" class="step-nav-btn px-3 py-1.5 rounded-lg transition font-medium text-slate-300 hover:text-white">
+          4. Check Sẵn Sàng
+        </button>
+        <button onclick="goToStep('player')" id="btn-step-player" class="step-nav-btn px-3 py-1.5 rounded-lg transition font-medium text-slate-300 hover:text-white">
+          5. Vào Học (Player)
+        </button>
+      </div>
+
+      <!-- User status -->
+      <div class="flex items-center gap-3">
+        <div class="text-right hidden sm:block">
+          <p class="text-xs font-semibold text-slate-200">Đặng Tuấn (Học viên)</p>
+          <p class="text-[10px] text-emerald-400 flex items-center justify-end gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+            Đang học Module 4
+          </p>
+        </div>
+        <div class="h-9 w-9 rounded-full bg-slate-700 ring-2 ring-indigo-500/50 flex items-center justify-center font-bold text-sm text-indigo-200">
+          DT
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- VIEW 1: COURSE DASHBOARD (Trigger Point) -->
+    <section id="view-dashboard" class="transition-all duration-300">
+      <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-950/60 px-2.5 py-1 rounded-md border border-indigo-800/60">Khóa học: LLM & Agentic AI Engineering</span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Chương 4: Advanced Retrieval-Augmented Generation (RAG)</h1>
+          <p class="text-sm text-slate-400 mt-1">Chuẩn bị trước bài học giúp giảm 70% tình trạng phải dừng video để tra cứu kiến thức nền.</p>
+        </div>
+        
+        <!-- Live Evidence Mini Banner -->
+        <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 max-w-md">
+          <div class="flex items-start gap-2.5">
+            <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div class="text-xs">
+              <span class="font-semibold text-amber-300">Pain Hypothesis (CP1 Evidence):</span>
+              <p class="text-slate-300 mt-0.5">82% học viên gặp khựng khi video nhắc tới <code class="text-amber-200 font-mono bg-black/30 px-1 rounded">Cross-Encoder</code> do nhầm với Bi-Encoder.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Curriculum List -->
+      <div class="space-y-3">
+        <!-- Completed Lesson -->
+        <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 flex items-center justify-between opacity-80 hover:opacity-100 transition">
+          <div class="flex items-center gap-3.5">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm border border-emerald-500/30">✓</div>
+            <div>
+              <h3 class="font-medium text-slate-200">Bài 6: Embedding Models & Dense Retrieval</h3>
+              <p class="text-xs text-slate-400">Đã hoàn thành • 42 phút • 1 quiz</p>
+            </div>
+          </div>
+          <span class="text-xs font-medium text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">Đã học xong</span>
+        </div>
+
+        <!-- CURRENT LESSON FOCUS (Lesson 7) -->
+        <div class="relative bg-gradient-to-br from-slate-900 via-indigo-950/30 to-slate-900 border-2 border-indigo-500/80 rounded-2xl p-5 sm:p-6 shadow-xl shadow-indigo-950/40">
+          <div class="absolute -top-3 left-6 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-[11px] font-bold uppercase tracking-wider px-3 py-0.5 rounded-full shadow">
+            Bài tiếp theo của bạn
+          </div>
+
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pt-1">
+            <div class="space-y-2">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-300">Bài 07</span>
+                <span class="text-xs text-indigo-400 font-medium flex items-center gap-1">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  Thời lượng: 38 phút
+                </span>
+                <span class="text-xs bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded border border-rose-500/30 font-medium">Độ khó: Nâng cao</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold text-white">Hybrid Search & Cross-Encoder Reranking trong RAG</h2>
+              <p class="text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Khắc phục nhược điểm của Vector Search thuần túy bằng cách kết hợp BM25 Keyword Search và tầng chấm điểm lại Reranking trước khi nạp context vào LLM.
+              </p>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+              <!-- Primary CTA: VLearn Ready -->
+              <button onclick="startPrepFlow()" class="relative group px-5 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2.5 transition transform active:scale-95">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+                </span>
+                <span>Chuẩn bị với VLearn Ready</span>
+                <span class="text-[11px] bg-white/20 px-1.5 py-0.5 rounded font-mono">~3 phút</span>
+              </button>
+
+              <button onclick="goToStep('player')" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium text-center border border-slate-700/80 transition">
+                Vào học ngay (Không chuẩn bị)
+              </button>
+            </div>
+          </div>
+
+          <!-- Feature Highlight footer -->
+          <div class="mt-5 pt-4 border-t border-slate-800/80 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-400">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Phân loại Prerequisite chính xác</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+              <span>Dẫn link đúng timestamp bài trước</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              <span>Không bịa nguồn (100% Grounded)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Lesson -->
+        <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-4 flex items-center justify-between opacity-60">
+          <div class="flex items-center gap-3.5">
+            <div class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-sm">08</div>
+            <div>
+              <h3 class="font-medium text-slate-300">Bài 8: Self-Correction RAG & Corrective Search</h3>
+              <p class="text-xs text-slate-500">Khóa • Sẽ mở sau khi hoàn thành Bài 7</p>
+            </div>
+          </div>
+          <span class="text-xs text-slate-500">Chưa mở</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: AI AUTOMATION PIPELINE (Hackathon Core Value Inspector) -->
+    <section id="view-pipeline" class="hidden transition-all duration-300 space-y-6">
+      <div class="bg-slate-900/90 border border-indigo-500/30 rounded-2xl p-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-5">
+          <div>
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-300 text-xs font-semibold border border-indigo-500/20">
+              <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+              Automation Pipeline Architecture
+            </div>
+            <h2 class="text-xl font-bold text-white mt-2">Hệ Thống Trích Xuất & Phân Loại Prerequisite</h2>
+            <p class="text-sm text-slate-400 mt-1">AI không chỉ summarize. Giá trị cốt lõi là phân biệt kiến thức bắt buộc vs kiến thức sẽ được dạy.</p>
+          </div>
+          <button onclick="goToStep('prepcard')" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center gap-2 self-start md:self-auto shadow-md transition">
+            <span>Xem Prep Card Hoàn Chỉnh</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+
+        <!-- Pipeline Diagram with Interactive Inspection Nodes -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+          
+          <!-- Step 1: Ingestion -->
+          <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-mono text-indigo-400 font-bold uppercase tracking-wider">Step 01 • Input Sources</span>
+              <h4 class="text-sm font-semibold text-white mt-1">Dữ liệu nguồn chính thức</h4>
+              <ul class="text-xs text-slate-300 space-y-1.5 mt-3">
+                <li class="flex items-center gap-1.5 text-emerald-400 font-mono text-[11px]">
+                  <span>✓</span> Transcript (3,850 words)
+                </li>
+                <li class="flex items-center gap-1.5 text-emerald-400 font-mono text-[11px]">
+                  <span>✓</span> Slide bài giảng (26 slides)
+                </li>
+                <li class="flex items-center gap-1.5 text-indigo-300 font-mono text-[11px]">
+                  <span>★</span> Instructor Intent Fixture
+                </li>
+              </ul>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-500">Tier 1 Course Source</div>
+          </div>
+
+          <!-- Step 2: Extraction -->
+          <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-mono text-violet-400 font-bold uppercase tracking-wider">Step 02 • Extraction</span>
+              <h4 class="text-sm font-semibold text-white mt-1">Bóc tách Concept & Outcome</h4>
+              <p class="text-xs text-slate-400 mt-2">Xác định 3 outcomes đầu ra và 4 concept candidates xuất hiện trước khi được định nghĩa.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-violet-400 font-mono">Found 4 candidates</div>
+          </div>
+
+          <!-- Step 3: Classification (The Crucial AI Decision) -->
+          <div class="bg-indigo-950/40 border-2 border-indigo-500/50 rounded-xl p-4 flex flex-col justify-between relative shadow-lg">
+            <div class="absolute -top-2.5 right-2 bg-indigo-500 text-white text-[9px] font-bold px-2 py-0.5 rounded">Core Decision</div>
+            <div>
+              <span class="text-[10px] font-mono text-indigo-300 font-bold uppercase tracking-wider">Step 03 • AI Decision</span>
+              <h4 class="text-sm font-semibold text-white mt-1">Phân loại Prerequisite</h4>
+              <div class="space-y-1.5 mt-2.5 text-[11px]">
+                <div class="p-1.5 bg-rose-500/10 border border-rose-500/20 rounded text-rose-300 font-medium">Required (Bắt buộc)</div>
+                <div class="p-1.5 bg-blue-500/10 border border-blue-500/20 rounded text-blue-300 font-medium">Helpful (Nên biết)</div>
+                <div class="p-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded text-emerald-300 font-medium">Taught-in-lesson (Sẽ dạy)</div>
+              </div>
+            </div>
+            <div class="mt-3 pt-2 border-t border-indigo-900/60 text-[10px] text-slate-400">Tránh học thừa concept</div>
+          </div>
+
+          <!-- Step 4: Grounding & Verification -->
+          <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider">Step 04 • Grounding</span>
+              <h4 class="text-sm font-semibold text-white mt-1">Route & Căn Cứ Nguồn</h4>
+              <p class="text-xs text-slate-400 mt-2">Ghép concept thiếu vào đúng timestamp và slide ở bài trước. <strong>Không bịa link.</strong></p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-400 font-mono">100% Grounded Link</div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Hard Tests Evaluation Matrix -->
+        <div class="mt-6 bg-slate-950 p-4 rounded-xl border border-slate-800">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3 flex items-center gap-2">
+            <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            Hard Tests Compliance Monitor (Chống ảo giác & Phân loại sai)
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-800">
+              <span class="text-emerald-400 font-bold">✓ Test 02: Taught-in-lesson</span>
+              <p class="text-slate-400 mt-1">Concept <code class="text-slate-200">Cross-Encoder Inference Cost</code> được giảng viên dạy kỹ ở 12:40 -> <strong>Đã loại khỏi danh sách bắt buộc học trước</strong>.</p>
+            </div>
+            <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-800">
+              <span class="text-emerald-400 font-bold">✓ Test 04: Grounding check</span>
+              <p class="text-slate-400 mt-1"><code class="text-slate-200">Cosine Similarity</code> -> Route chính xác tới Bài 3, phút 14:25. Không sinh URL giả lập.</p>
+            </div>
+            <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-800">
+              <span class="text-indigo-400 font-bold">✓ Test 06: Instructor Intent</span>
+              <p class="text-slate-400 mt-1">Giảng viên ghi chú: <em>"Không đào sâu Loss function"</em> -> AI tự động ẩn phần toán lý thuyết phức tạp.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: THE LESSON PREP CARD (Student Core Experience) -->
+    <section id="view-prepcard" class="hidden transition-all duration-300 space-y-6">
+      
+      <!-- Prep Card Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-900/80 p-4 sm:p-5 rounded-2xl border border-slate-800">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center font-bold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Lesson Prep Card</span>
+              <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded-full">Bài 07: Hybrid Search & Reranking</span>
+            </div>
+            <h2 class="text-lg sm:text-xl font-bold text-white">Thẻ Chuẩn Bị Trước Giờ Học</h2>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <!-- Filter / View Modes -->
+          <button onclick="toggleInstructorIntentNotice()" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 flex items-center gap-1.5 transition">
+            <span class="text-amber-400">💡</span>
+            <span id="intent-btn-label">Bật Instructor Intent</span>
+          </button>
+          <button onclick="goToStep('readiness')" class="text-xs px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition flex items-center gap-1 shadow-md shadow-indigo-600/20">
+            <span>Kiểm tra độ sẵn sàng</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Instructor Intent Banner (Togglable) -->
+      <div id="instructor-intent-banner" class="hidden bg-gradient-to-r from-amber-500/10 via-amber-600/10 to-transparent border-l-4 border-amber-500 p-4 rounded-r-xl">
+        <div class="flex items-start gap-3">
+          <span class="text-xl">👨‍🏫</span>
+          <div class="text-xs">
+            <h4 class="font-bold text-amber-300">Ý định giảng dạy từ Giảng viên (Instructor Intent):</h4>
+            <p class="text-slate-300 mt-1 leading-relaxed">
+              "Trong bài này, tôi muốn các bạn tập trung hiểu trade-off giữa <strong>độ trễ (Latency)</strong> và <strong>độ chính xác (Recall/MRR)</strong> khi dùng Reranker. Không cần học thuộc công thức toán loss hay code huấn luyện mô hình từ đầu."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1: Learning Outcomes (🎯 Sau bài này bạn nên có thể) -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2 mb-4">
+          <span class="text-base">🎯</span>
+          Sau bài này bạn nên có thể (Learning Outcomes)
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80 flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+            <p class="text-xs text-slate-200 leading-relaxed"><strong class="text-white">Phân biệt được:</strong> Tại sao Dense Retrieval thuần túy thất bại với truy vấn số serial hoặc thuật ngữ kỹ thuật.</p>
+          </div>
+          <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80 flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+            <p class="text-xs text-slate-200 leading-relaxed"><strong class="text-white">Triển khai được:</strong> Pipeline kết hợp BM25 + Vector Search bằng thuật toán Reciprocal Rank Fusion (RRF).</p>
+          </div>
+          <div class="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80 flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
+            <p class="text-xs text-slate-200 leading-relaxed"><strong class="text-white">Đánh giá trade-off:</strong> Chọn lựa kích thước Cross-Encoder để cân đối latency dưới 150ms cho production.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Prerequisite Classification Matrix (🧠 Nên biết trước) -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+              <span class="text-base">🧠</span>
+              Kiến thức nền & Prerequisite (Phân loại tự động)
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">Bấm vào từng thẻ để xem trích đoạn slide hoặc timestamp bài trước nếu bạn chưa tự tin.</p>
+          </div>
+          <span class="text-[11px] text-slate-400 font-mono">3 concepts được chọn lọc</span>
+        </div>
+
+        <div class="space-y-3">
+
+          <!-- PREREQ ITEM 1: REQUIRED -->
+          <div class="bg-slate-950/90 border border-rose-500/30 hover:border-rose-500/60 rounded-xl p-4 transition">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/40">
+                    REQUIRED (Bắt buộc phải biết)
+                  </span>
+                  <span class="text-xs font-semibold text-white">Cosine Similarity & Vector Embeddings</span>
+                  <span id="badge-prereq-1" class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded hidden">Đã ôn tập</span>
+                </div>
+                <p class="text-xs text-slate-300">
+                  Bài 7 sẽ dùng phép tính tương đồng không gian vector để giải thích tại sao Bi-encoder không nắm bắt được tương tác giữa từng từ.
+                </p>
+                <div class="text-[11px] text-slate-400 flex items-center gap-1.5 pt-1">
+                  <span class="text-indigo-400">📚 Nguồn chính thức:</span>
+                  <span>Bài 3: Vector Math & Semantic Search • Phút 14:25</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="openSourceDrawer('cosine')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs font-medium border border-indigo-500/30 flex items-center gap-1.5 transition">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>Xem nhanh 2 phút</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PREREQ ITEM 2: HELPFUL -->
+          <div class="bg-slate-950/90 border border-blue-500/30 hover:border-blue-500/60 rounded-xl p-4 transition">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-xs font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/40">
+                    HELPFUL (Có thì học dễ hơn)
+                  </span>
+                  <span class="text-xs font-semibold text-white">BM25 / TF-IDF Keyword Scoring</span>
+                </div>
+                <p class="text-xs text-slate-300">
+                  Biết trước cách tính tần suất từ sẽ giúp hiểu tại sao Hybrid Search kết hợp được cả từ khóa chính xác và ngữ nghĩa mờ.
+                </p>
+                <div class="text-[11px] text-slate-400 flex items-center gap-1.5 pt-1">
+                  <span class="text-blue-400">📚 Nguồn chính thức:</span>
+                  <span>Slide 14-16, Bài 4 • Tài liệu ElasticSearch Recommended</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="openSourceDrawer('bm25')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-blue-300 text-xs font-medium border border-blue-500/30 flex items-center gap-1.5 transition">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                  <span>Xem slide tóm tắt</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PREREQ ITEM 3: TAUGHT IN LESSON (Anti-Pain Test) -->
+          <div class="bg-slate-950/50 border border-emerald-500/30 rounded-xl p-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1">
+                    <span>✓</span> TAUGHT IN LESSON (Sẽ dạy trong bài)
+                  </span>
+                  <span class="text-xs font-semibold text-slate-200">Cross-Encoder Architecture</span>
+                </div>
+                <p class="text-xs text-slate-400">
+                  <strong class="text-emerald-400 font-normal">Bạn không cần chuẩn bị trước!</strong> Khái niệm này sẽ được thầy Nam giảng giải từ số 0 tại phút 06:15 trong bài học này.
+                </p>
+              </div>
+
+              <div class="shrink-0 text-right">
+                <span class="text-[11px] text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-2 py-1 rounded">Không bắt học trước</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section 3: Pitfalls & Cohort Signals (⚠️ Điểm nên chú ý) -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2 mb-3">
+          <span class="text-base">⚠️</span>
+          Điểm Chú Ý & Cạm Bẫy Phổ Biến (Cohort 01-03 Insights)
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs">
+          <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5">
+            <h4 class="font-semibold text-amber-300 mb-1">Hiểu nhầm phổ biến:</h4>
+            <p class="text-slate-300 leading-relaxed">
+              Học viên thường tưởng <em>Cross-Encoder</em> có thể thay thế hoàn toàn <em>Vector Database</em>. Thực tế nó rất nặng, chỉ nên dùng để rerank <strong>Top 20-50 kết quả</strong> đầu vào.
+            </p>
+          </div>
+          <div class="bg-indigo-500/10 border border-indigo-500/30 rounded-xl p-3.5">
+            <h4 class="font-semibold text-indigo-300 mb-1">Điểm ăn điểm khi thực hành:</h4>
+            <p class="text-slate-300 leading-relaxed">
+              Chú ý đoạn code phút 24:10 về hàm chuẩn hóa <code class="text-indigo-200 font-mono">min-max scaling</code> trước khi cộng điểm BM25 và Vector Similarity.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom action: Ready to jump into Lesson or do quick check -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-gradient-to-r from-slate-900 to-indigo-950 rounded-2xl border border-indigo-500/30">
+        <div class="text-xs text-slate-300">
+          <span class="font-semibold text-white">Bạn đã nắm chắc các kiến thức trên?</span>
+          <p class="text-slate-400">Hãy thử bài kiểm tra nhanh 2 câu hoặc vào học ngay.</p>
+        </div>
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <button onclick="goToStep('readiness')" class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition">
+            Làm Quick Check (1 phút)
+          </button>
+          <button onclick="goToStep('player')" class="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30 transition flex items-center justify-center gap-2">
+            <span>Bắt đầu học Bài 7</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- VIEW 4: READINESS CHECK (Adaptive Learning Expansion) -->
+    <section id="view-readiness" class="hidden transition-all duration-300 max-w-3xl mx-auto space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+          <div>
+            <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Quick Diagnostics • 60 Giây</span>
+            <h2 class="text-xl font-bold text-white mt-1">Kiểm Tra Mức Độ Sẵn Sàng (Readiness)</h2>
+          </div>
+          <span class="text-xs text-slate-400 bg-slate-800 px-2.5 py-1 rounded-full">2 câu hỏi</span>
+        </div>
+
+        <!-- Quiz Form -->
+        <div class="space-y-6">
+          <!-- Question 1 -->
+          <div class="space-y-3">
+            <p class="text-sm font-semibold text-slate-200">
+              Câu 1: Giá trị Cosine Similarity giữa 2 vector chỉ cùng hướng (hoàn toàn đồng nghĩa) bằng bao nhiêu?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+              <label class="quiz-option cursor-pointer p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 flex items-center gap-3 transition">
+                <input type="radio" name="q1" value="0" class="text-indigo-600 focus:ring-indigo-500">
+                <span>0.0</span>
+              </label>
+              <label class="quiz-option cursor-pointer p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 flex items-center gap-3 transition">
+                <input type="radio" name="q1" value="1" class="text-indigo-600 focus:ring-indigo-500">
+                <span class="font-medium text-white">1.0 (Chính xác)</span>
+              </label>
+              <label class="quiz-option cursor-pointer p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 flex items-center gap-3 transition">
+                <input type="radio" name="q1" value="-1" class="text-indigo-600 focus:ring-indigo-500">
+                <span>-1.0</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="space-y-3">
+            <p class="text-sm font-semibold text-slate-200">
+              Câu 2: Nhược điểm lớn nhất của BM25 so với Dense Semantic Search là gì?
+            </p>
+            <div class="space-y-2 text-xs">
+              <label class="quiz-option cursor-pointer p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 flex items-center gap-3 transition">
+                <input type="radio" name="q2" value="synonym" class="text-indigo-600 focus:ring-indigo-500">
+                <span class="text-white">Không hiểu được từ đồng nghĩa hoặc câu hỏi khác từ nhưng cùng ý (Vocabulary Mismatch)</span>
+              </label>
+              <label class="quiz-option cursor-pointer p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 flex items-center gap-3 transition">
+                <input type="radio" name="q2" value="slow" class="text-indigo-600 focus:ring-indigo-500">
+                <span>Tốc độ tìm kiếm quá chậm so với Deep Learning</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Submission Result Area -->
+        <div id="quiz-result-box" class="hidden mt-6 pt-5 border-t border-slate-800 space-y-4">
+          <div id="quiz-badge" class="p-4 rounded-xl flex items-center gap-3">
+            <!-- Dynamic Result Content -->
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <div class="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between">
+          <button onclick="goToStep('prepcard')" class="text-xs text-slate-400 hover:text-white transition">
+            ← Quay lại Prep Card
+          </button>
+          <button id="btn-submit-quiz" onclick="evaluateQuiz()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md transition">
+            Chấm Điểm Đánh Giá
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: LESSON PLAYER (Transition into Learning with Companion) -->
+    <section id="view-player" class="hidden transition-all duration-300">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        
+        <!-- Video & Player Main Area (3 cols) -->
+        <div class="lg:col-span-3 space-y-4">
+          <!-- Video Screen Mock -->
+          <div class="relative aspect-video bg-black rounded-2xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col justify-between p-6 group">
+            
+            <!-- Video Top bar overlay -->
+            <div class="flex items-center justify-between text-xs text-slate-300 z-10">
+              <span class="bg-black/60 backdrop-blur px-3 py-1 rounded-full border border-white/10 font-medium">
+                Bài 07: Hybrid Search & Cross-Encoder Reranking
+              </span>
+              <span class="bg-red-500/80 text-white font-bold px-2 py-0.5 rounded text-[10px] tracking-wider uppercase">
+                HD 1080p
+              </span>
+            </div>
+
+            <!-- Fake Video Center Graphic (Instructor & Slide) -->
+            <div class="my-auto flex flex-col items-center justify-center text-center space-y-3 z-10">
+              <div class="w-16 h-16 rounded-full bg-indigo-600/30 border-2 border-indigo-400 flex items-center justify-center text-white text-2xl shadow-xl shadow-indigo-500/30 group-hover:scale-110 transition cursor-pointer" onclick="togglePlayState()">
+                <span id="play-icon">▶</span>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-white">Đang phát: Khái niệm Cross-Encoder vs Bi-Encoder</p>
+                <p class="text-xs text-slate-400">Giảng viên: TS. Nguyễn Hoài Nam • AI Researcher</p>
+              </div>
+            </div>
+
+            <!-- Video Bottom Controls Mock -->
+            <div class="space-y-2 z-10 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-2 rounded-xl">
+              <!-- Progress Bar -->
+              <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden cursor-pointer">
+                <div class="bg-indigo-500 h-full w-[28%] rounded-full relative">
+                  <div class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow"></div>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-slate-300">
+                <div class="flex items-center gap-3">
+                  <span id="play-status-label" class="cursor-pointer font-medium hover:text-white" onclick="togglePlayState()">Tạm dừng</span>
+                  <span>10:45 / 38:20</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-indigo-400 font-medium">1.25x</span>
+                  <span>Full Screen</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Subtle background abstract for video mockup -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-900 to-indigo-950/40 opacity-80"></div>
+          </div>
+
+          <!-- Lesson Details & Tabs -->
+          <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-5">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 class="font-bold text-base text-white">Tài liệu đính kèm & Mã nguồn thực hành</h3>
+              <span class="text-xs text-slate-400">Repo: vlearn-rag-pipeline</span>
+            </div>
+            <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+              Trong bài học này, chúng ta kết hợp thư viện <code class="bg-slate-800 px-1.5 py-0.5 rounded text-indigo-300">sentence-transformers</code> với mô hình Cross-Encoder <code class="bg-slate-800 px-1.5 py-0.5 rounded text-indigo-300">ms-marco-MiniLM-L-6-v2</code>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Prep Companion Sidebar (1 col) -->
+        <div class="space-y-4">
+          <div class="bg-slate-900 border border-indigo-500/30 rounded-2xl p-4 shadow-xl">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="text-indigo-400">⚡</span>
+                <h4 class="text-xs font-bold text-white uppercase tracking-wide">VLearn Ready Companion</h4>
+              </div>
+              <button onclick="goToStep('prepcard')" class="text-[11px] text-indigo-400 hover:underline">
+                Mở thẻ đầy đủ
+              </button>
+            </div>
+
+            <!-- Quick Prereq Quick-Review Widget -->
+            <div class="mt-3 space-y-3">
+              <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Nhắc bài nhanh:</span>
+              
+              <div class="p-3 bg-slate-950 rounded-xl border border-slate-800/90 text-xs space-y-1.5">
+                <div class="flex items-center justify-between font-semibold text-rose-300 text-[11px]">
+                  <span>Cosine Similarity</span>
+                  <span class="text-slate-400 font-normal">Bài 3 @ 14:25</span>
+                </div>
+                <p class="text-slate-400 text-[11px]">
+                  Đo góc giữa 2 vector. Giá trị 1 = giống hệt; 0 = vuông góc (không liên quan).
+                </p>
+                <button onclick="openSourceDrawer('cosine')" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-medium flex items-center gap-1">
+                  <span>Xem lại đoạn 1 phút</span> →
+                </button>
+              </div>
+
+              <div class="p-3 bg-slate-950 rounded-xl border border-slate-800/90 text-xs space-y-1.5">
+                <div class="flex items-center justify-between font-semibold text-amber-300 text-[11px]">
+                  <span>Cạm bẫy bài này:</span>
+                </div>
+                <p class="text-slate-400 text-[11px]">
+                  Đừng nạp toàn bộ 1000 documents vào Cross-Encoder vì latency sẽ vọt lên >2 giây!
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800 text-center">
+              <button onclick="goToStep('dashboard')" class="text-xs text-slate-400 hover:text-white transition">
+                ← Quay lại danh sách bài
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- GROUNDED SOURCE DRAWER / MODAL (No Hallucinations Guarantee) -->
+  <div id="source-drawer" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Drawer Header -->
+      <div class="p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-sm border border-indigo-500/30">
+            📚
+          </div>
+          <div>
+            <span class="text-[10px] uppercase tracking-wider font-bold text-emerald-400 font-mono">Tier 1 Grounded Source</span>
+            <h3 id="drawer-title" class="text-sm sm:text-base font-bold text-white">Nguồn bài giảng gốc</h3>
+          </div>
+        </div>
+        <button onclick="closeSourceDrawer()" class="text-slate-400 hover:text-white p-1 rounded-lg bg-slate-800">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Drawer Body -->
+      <div id="drawer-content" class="p-5 overflow-y-auto space-y-4 custom-scrollbar text-xs">
+        <!-- Content will be injected by JavaScript -->
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="p-4 border-t border-slate-800 bg-slate-950 flex items-center justify-between">
+        <span class="text-[11px] text-slate-400">Grounding ID: <code class="text-slate-300 font-mono">chk_course_b3_1425</code></span>
+        <div class="flex items-center gap-2">
+          <button onclick="markUnderstood()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition flex items-center gap-1.5 shadow">
+            <span>✓ Tôi đã nắm được kiến thức này</span>
+          </button>
+          <button onclick="closeSourceDrawer()" class="px-3 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs hover:bg-slate-700 transition">
+            Đóng
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Container (Never alert()) -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <script>
+    let currentStep = 'dashboard';
+    let isPlaying = true;
+    let instructorIntentActive = false;
+    let understoodCosine = false;
+
+    function goToStep(step) {
+      currentStep = step;
+      
+      // List of views
+      const views = ['dashboard', 'pipeline', 'prepcard', 'readiness', 'player'];
+      
+      // Toggle view visibility
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        if (el) {
+          if (v === step) {
+            el.classList.remove('hidden');
+          } else {
+            el.classList.add('hidden');
+          }
+        }
+      });
+
+      // Update Top Nav button styles
+      document.querySelectorAll('.step-nav-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white', 'shadow');
+        btn.classList.add('text-slate-300');
+      });
+      const activeBtn = document.getElementById(`btn-step-${step}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-300');
+        activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function startPrepFlow() {
+      showToast('Đang kích hoạt VLearn Ready...', 'info');
+      // Briefly show pipeline then open prepcard
+      goToStep('prepcard');
+      showToast('Thẻ Lesson Prep Card đã sẵn sàng!', 'success');
+    }
+
+    function toggleInstructorIntentNotice() {
+      instructorIntentActive = !instructorIntentActive;
+      const banner = document.getElementById('instructor-intent-banner');
+      const label = document.getElementById('intent-btn-label');
+      
+      if (instructorIntentActive) {
+        banner.classList.remove('hidden');
+        label.textContent = 'Ẩn Instructor Intent';
+        showToast('Đã nạp Intent từ Giảng viên vào Preparation Card', 'success');
+      } else {
+        banner.classList.add('hidden');
+        label.textContent = 'Bật Instructor Intent';
+      }
+    }
+
+    function openSourceDrawer(conceptType) {
+      const drawer = document.getElementById('source-drawer');
+      const title = document.getElementById('drawer-title');
+      const content = document.getElementById('drawer-content');
+
+      if (conceptType === 'cosine') {
+        title.innerText = 'Trích dẫn Bài 3: Vector Math & Cosine Similarity (@14:25)';
+        content.innerHTML = `
+          <div class="bg-black rounded-xl p-3 border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-[11px] text-slate-400">
+              <span>Video Segment: Bài 3 • Phút 14:25 - 15:40</span>
+              <span class="text-emerald-400 font-mono">Grounding Confidence: 99%</span>
+            </div>
+            <div class="p-3 bg-slate-950 rounded-lg border-l-2 border-indigo-500 font-sans text-slate-300 leading-relaxed text-xs">
+              <p class="italic text-slate-400 mb-1">Transcript nguyên văn trích từ video giảng dạy:</p>
+              "…Các bạn hãy nhớ công thức cơ bản: Cosine Similarity đo góc $\\theta$ giữa hai vector. Khi hai embedding có cùng phương cùng hướng thì $\\cos(0) = 1$. Khi chúng trực giao thì bằng 0. Trong bài 7 sắp tới về Reranking, các bạn sẽ thấy Bi-encoder chỉ tính độc lập hai vector này rồi nhân vô hướng, đó là lý do nó không hiểu được sự tương tác chéo giữa query và document…"
+            </div>
+          </div>
+          <div class="bg-indigo-950/40 p-3 rounded-xl border border-indigo-500/30 text-xs">
+            <h5 class="font-bold text-indigo-300 mb-1">Tóm tắt ngắn (Takeaway):</h5>
+            <ul class="list-disc list-inside space-y-1 text-slate-300">
+              <li>Cosine = 1 (Rất liên quan ngữ nghĩa)</li>
+              <li>Cosine = 0 (Không liên quan)</li>
+              <li>Bi-encoder tính nhanh nhưng bỏ qua tương tác từ ngữ chi tiết.</li>
+            </ul>
+          </div>
+        `;
+      } else if (conceptType === 'bm25') {
+        title.innerText = 'Slide Bài 4: BM25 Lexical Matching (Slide 14-16)';
+        content.innerHTML = `
+          <div class="bg-black rounded-xl p-4 border border-slate-800 space-y-3">
+            <div class="flex items-center justify-between text-[11px] text-slate-400">
+              <span>Slide Deck: Bài 4 • Slide 15</span>
+              <span class="text-blue-400 font-mono">Source: Official Slides</span>
+            </div>
+            <div class="p-4 bg-slate-900 rounded-lg border border-slate-800 text-center space-y-2">
+              <div class="text-xl font-bold text-white">BM25 vs Dense Vector</div>
+              <p class="text-xs text-slate-300 max-w-md mx-auto">
+                BM25 là thuật toán dựa trên tần suất từ (Term Frequency - Inverse Document Frequency). Ưu điểm vượt trội khi tìm kiếm chính xác mã định danh, số CMND/CCCD, tên model máy (VD: iPhone 15 Pro Max 256GB).
+              </p>
+            </div>
+          </div>
+          <div class="bg-blue-950/40 p-3 rounded-xl border border-blue-500/30 text-xs">
+            <h5 class="font-bold text-blue-300 mb-1">Tại sao cần cho Bài 7?</h5>
+            <p class="text-slate-300">Bài 7 sẽ dùng BM25 để làm nhánh Keyword Search trong mô hình Hybrid Search kết hợp.</p>
+          </div>
+        `;
+      }
+
+      drawer.classList.remove('hidden');
+      drawer.classList.add('flex');
+    }
+
+    function closeSourceDrawer() {
+      const drawer = document.getElementById('source-drawer');
+      drawer.classList.add('hidden');
+      drawer.classList.remove('flex');
+    }
+
+    function markUnderstood() {
+      understoodCosine = true;
+      const badge = document.getElementById('badge-prereq-1');
+      if (badge) {
+        badge.classList.remove('hidden');
+        badge.classList.add('bg-emerald-500/20', 'text-emerald-300', 'border', 'border-emerald-500/30');
+        badge.innerText = '✓ Đã nắm vững';
+      }
+      closeSourceDrawer();
+      showToast('Đã đánh dấu hoàn thành ôn tập Prerequisite!', 'success');
+    }
+
+    function evaluateQuiz() {
+      const q1Val = document.querySelector('input[name="q1"]:checked')?.value;
+      const q2Val = document.querySelector('input[name="q2"]:checked')?.value;
+
+      if (!q1Val || !q2Val) {
+        showToast('Vui lòng trả lời cả 2 câu hỏi để chẩn đoán', 'warning');
+        return;
+      }
+
+      const resultBox = document.getElementById('quiz-result-box');
+      const badge = document.getElementById('quiz-badge');
+      resultBox.classList.remove('hidden');
+
+      if (q1Val === '1' && q2Val === 'synonym') {
+        // READY STATE
+        badge.className = 'p-4 rounded-xl flex items-center justify-between bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs';
+        badge.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🎉</span>
+            <div>
+              <h4 class="font-bold text-sm text-white">Trạng thái: HOÀN TOÀN SẴN SÀNG (READY)</h4>
+              <p class="text-slate-300 mt-0.5">Bạn đã nắm vững nền tảng vector và BM25. Bạn có thể tự tin theo trọn vẹn Bài 7.</p>
+            </div>
+          </div>
+          <button onclick="goToStep('player')" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow shrink-0">
+            Vào bài học ngay
+          </button>
+        `;
+        showToast('Chẩn đoán thành công: Bạn đã sẵn sàng!', 'success');
+      } else {
+        // PARTIALLY READY STATE
+        badge.className = 'p-4 rounded-xl flex items-center justify-between bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs';
+        badge.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">⚠️</span>
+            <div>
+              <h4 class="font-bold text-sm text-white">Trạng thái: CẦN ÔN NHANH (PARTIALLY READY)</h4>
+              <p class="text-slate-300 mt-0.5">Bạn có 1 câu trả lời chưa chuẩn. Nên xem lại đoạn clip 2 phút của Bài 3 trước khi bấm học.</p>
+            </div>
+          </div>
+          <button onclick="openSourceDrawer('cosine')" class="px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold shadow shrink-0">
+            Xem trích đoạn 2 phút
+          </button>
+        `;
+        showToast('Gợi ý: Hãy xem lại trích đoạn 2 phút trước khi vào bài', 'warning');
+      }
+    }
+
+    function togglePlayState() {
+      isPlaying = !isPlaying;
+      const icon = document.getElementById('play-icon');
+      const label = document.getElementById('play-status-label');
+      
+      if (isPlaying) {
+        icon.innerText = '⏸';
+        label.innerText = 'Đang phát (Tạm dừng)';
+        showToast('Video tiếp tục phát', 'info');
+      } else {
+        icon.innerText = '▶';
+        label.innerText = 'Đang dừng (Phát)';
+      }
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      let borderCol = 'border-indigo-500/40';
+      let textCol = 'text-indigo-200';
+      let icon = 'ℹ️';
+
+      if (type === 'success') {
+        borderCol = 'border-emerald-500/50';
+        textCol = 'text-emerald-300';
+        icon = '✅';
+      } else if (type === 'warning') {
+        borderCol = 'border-amber-500/50';
+        textCol = 'text-amber-300';
+        icon = '⚠️';
+      }
+
+      toast.className = `pointer-events-auto bg-slate-900 border ${borderCol} ${textCol} text-xs px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2.5 transition-all duration-300 transform translate-y-2 opacity-0`;
+      toast.innerHTML = `<span>${icon}</span><span class="font-medium text-slate-100">${message}</span>`;
+
+      container.appendChild(toast);
+
+      // Animate in
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      // Animate out & remove
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3200);
+    }
+  </script>
+</body>
+</html>
