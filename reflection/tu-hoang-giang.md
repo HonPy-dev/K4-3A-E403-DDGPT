@@ -1,6 +1,5 @@
 # Reflection — Từ Hoàng Giang — 2A202602363
 
-> Bản nháp cá nhân: thành viên cần đọc lại và xác nhận nội dung trước khi nộp.
 
 ## Vai trò và đóng góp
 
