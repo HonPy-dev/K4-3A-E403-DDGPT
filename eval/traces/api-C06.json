@@ -1,0 +1,20 @@
+{
+ "id": "C06",
+ "prompt": "Xac dinh prerequisite cho Lesson 9 - AI Agent (khong co trong nguon).",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [], \"questions\": [], \"refusal\": true, \"refusal_reason\": \"Không có nguồn nào trong kho (L6, L3, L4, INTENT) đề cập đến Lesson 9 - AI Agent. Mình chỉ có thể trích xuất prerequisite từ 4 nguồn được cung cấp. Bạn có muốn mình xác định prerequisite cho Lesson 6 - RAG + Reranking dựa trên L6, L3, L4, INTENT không?\"}",
+ "parsed": {
+  "prereqs": [],
+  "questions": [],
+  "refusal": true,
+  "refusal_reason": "Không có nguồn nào trong kho (L6, L3, L4, INTENT) đề cập đến Lesson 9 - AI Agent. Mình chỉ có thể trích xuất prerequisite từ 4 nguồn được cung cấp. Bạn có muốn mình xác định prerequisite cho Lesson 6 - RAG + Reranking dựa trên L6, L3, L4, INTENT không?"
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Bao 'chua du can cu', khong tu tao prereq",
+ "hard_test": "HT2-HT10"
+}

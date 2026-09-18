@@ -1,0 +1,20 @@
+{
+ "id": "T05",
+ "prompt": "De hoc buoi nay co can biet truoc 'quantum backprop' khong?",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [], \"questions\": [], \"refusal\": true, \"refusal_reason\": \"Nguồn được cung cấp (T06, T04, SLIDE) không đề cập đến khái niệm 'quantum backprop'. Vì không có bằng chứng trong tài liệu khóa học, tôi không thể xác nhận đây là kiến thức cần biết trước. Vui lòng tham khảo nội dung trong các nguồn của khóa học để đặt câu hỏi phù hợp.\"}",
+ "parsed": {
+  "prereqs": [],
+  "questions": [],
+  "refusal": true,
+  "refusal_reason": "Nguồn được cung cấp (T06, T04, SLIDE) không đề cập đến khái niệm 'quantum backprop'. Vì không có bằng chứng trong tài liệu khóa học, tôi không thể xác nhận đây là kiến thức cần biết trước. Vui lòng tham khảo nội dung trong các nguồn của khóa học để đặt câu hỏi phù hợp."
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Loai — khong can cu, khong bia",
+ "hard_test": "HT2"
+}

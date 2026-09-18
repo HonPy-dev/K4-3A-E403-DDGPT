@@ -1,0 +1,76 @@
+{
+ "id": "C09",
+ "prompt": "Hoc vien thieu Chunking. Route dung 1 nguon review tot nhat.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Chunking\", \"label\": \"Required\", \"evidence\": \"Slide Lesson 4, trang 14-17: chunk 500 tokens, overlap 50 tokens de giu mach ngu canh giua 2 chunk. Minh hoa dut mach khi overlap bang 0. Rule: cau hoi can cross-chunk thi tang overlap. Dependency: chunking xau thi retrieval xau du reranker tot.\", \"source\": \"L4\", \"review\": \"On lai Lesson 4 slide 14-17: chunk 500 tokens, overlap 50 tokens; tang overlap khi cau hoi can cross-chunk; chunking xau lam retrieval xau.\"}, {\"name\": \"Embedding\", \"label\": \"Required\", \"evidence\": \"Transcript Lesson 3, doan 18:40: embedding la cach bien mot doan text thanh mot vector so, sao cho hai cau gan nghia thi vector gan nhau. Do bang cosine similarity.\", \"source\": \"L3\", \"review\": \"On lai Lesson 3 doan 18:40: embedding bien text thanh vector so; hai cau gan nghia thi vector gan nhau; do bang cosine similarity.\"}, {\"name\": \"Reranking\", \"label\": \"Taught-in-lesson\", \"evidence\": \"Reranking duoc day ky trong bai (cross-encoder cham tung cap query-document). [14:20] Giai thich: reranker KHONG thay duoc retriever.\", \"source\": \"L6\", \"review\": \"Trong Lesson 6 se hoc ky reranking: cross-encoder cham tung cap query-document; reranker khong thay duoc retriever.\"}], \"questions\": [{\"prereq\": \"Chunking\", \"stem\": \"Theo Lesson 4, chunk 500 tokens nen co overlap bao nhieu de giu mach ngu canh giua 2 chunk?\", \"options\": [\"A. 0 tokens\", \"B. 50 tokens\", \"C. 500 tokens\"], \"answer\": \"B\", \"source\": \"L4\"}, {\"prereq\": \"Embedding\", \"stem\": \"Theo Lesson 3, embedding la gi?\", \"options\": [\"A. Bien mot doan text thanh mot vector so sao cho hai cau gan nghia thi vector gan nhau\", \"B. Cham diem tung cap query-document bang cross-encoder\", \"C. Cat van ban thanh cac chunk 500 tokens\"], \"answer\": \"A\", \"source\": \"L3\"}, {\"prereq\": \"Reranking\", \"stem\": \"Theo Lesson 6, reranker hoat dong nhu the nao?\", \"options\": [\"A. Thay the retriever de lay top-50\", \"B. Cham tung cap query-document bang cross-encoder de xep lai top-5\", \"C. Tang overlap giua cac chunk\"], \"answer\": \"B\", \"source\": \"L6\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Chunking",
+    "label": "Required",
+    "evidence": "Slide Lesson 4, trang 14-17: chunk 500 tokens, overlap 50 tokens de giu mach ngu canh giua 2 chunk. Minh hoa dut mach khi overlap bang 0. Rule: cau hoi can cross-chunk thi tang overlap. Dependency: chunking xau thi retrieval xau du reranker tot.",
+    "source": "L4",
+    "review": "On lai Lesson 4 slide 14-17: chunk 500 tokens, overlap 50 tokens; tang overlap khi cau hoi can cross-chunk; chunking xau lam retrieval xau."
+   },
+   {
+    "name": "Embedding",
+    "label": "Required",
+    "evidence": "Transcript Lesson 3, doan 18:40: embedding la cach bien mot doan text thanh mot vector so, sao cho hai cau gan nghia thi vector gan nhau. Do bang cosine similarity.",
+    "source": "L3",
+    "review": "On lai Lesson 3 doan 18:40: embedding bien text thanh vector so; hai cau gan nghia thi vector gan nhau; do bang cosine similarity."
+   },
+   {
+    "name": "Reranking",
+    "label": "Taught-in-lesson",
+    "evidence": "Reranking duoc day ky trong bai (cross-encoder cham tung cap query-document). [14:20] Giai thich: reranker KHONG thay duoc retriever.",
+    "source": "L6",
+    "review": "Trong Lesson 6 se hoc ky reranking: cross-encoder cham tung cap query-document; reranker khong thay duoc retriever."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Chunking",
+    "stem": "Theo Lesson 4, chunk 500 tokens nen co overlap bao nhieu de giu mach ngu canh giua 2 chunk?",
+    "options": [
+     "A. 0 tokens",
+     "B. 50 tokens",
+     "C. 500 tokens"
+    ],
+    "answer": "B",
+    "source": "L4"
+   },
+   {
+    "prereq": "Embedding",
+    "stem": "Theo Lesson 3, embedding la gi?",
+    "options": [
+     "A. Bien mot doan text thanh mot vector so sao cho hai cau gan nghia thi vector gan nhau",
+     "B. Cham diem tung cap query-document bang cross-encoder",
+     "C. Cat van ban thanh cac chunk 500 tokens"
+    ],
+    "answer": "A",
+    "source": "L3"
+   },
+   {
+    "prereq": "Reranking",
+    "stem": "Theo Lesson 6, reranker hoat dong nhu the nao?",
+    "options": [
+     "A. Thay the retriever de lay top-50",
+     "B. Cham tung cap query-document bang cross-encoder de xep lai top-5",
+     "C. Tang overlap giua cac chunk"
+    ],
+    "answer": "B",
+    "source": "L6"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Lesson 4 Slide 14-17 (~3')",
+ "hard_test": "HT8-HT9"
+}

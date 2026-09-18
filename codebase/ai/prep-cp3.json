@@ -1,0 +1,86 @@
+{"generated_from": "eval/traces/ask-02-targeted-pass.json (NotebookLM ask --json, notebook dec25533, 4 fixture sources, turn 2026-09-17). Noi dung do nguoi kiem tra doi chieu tung citation truoc khi dong bang.",
+  "lesson": "Lesson 6 · RAG + Reranking",
+  "meta": "24 phut · 18 slides · AI: NotebookLM grounded tren 4 nguon Tier-1 (khong bia citation)",
+  "outcomes": [
+    "Giai thich pipeline RAG (retrieve -> rerank -> generate)",
+    "Phan biet retriever vs reranker (vai tro, thu tu, vi sao can ca hai)",
+    "Ap dung reranking khi top-k ket qua nhieu"
+  ],
+  "prereqs": [
+    {
+      "evidence": "Bai dung embedding de giang dense retrieval tu phut 02:10 ma KHONG dinh nghia lai",
+      "id": "emb",
+      "label": "Required",
+      "name": "Embedding vector",
+      "review": "Lesson 3 · doan 18:40 'embedding la gi + cosine' (~2')",
+      "source": "L3-embedding-1840"
+    },
+    {
+      "evidence": "Slide 6 gia dinh chunk 500 tokens / overlap 50 — bai khong giang lai",
+      "id": "chunk",
+      "label": "Required",
+      "name": "Chunking (size / overlap)",
+      "review": "Lesson 4 · Slide 14-17 chunking (~3')",
+      "source": "L4-chunking-slide14-17"
+    },
+    {
+      "evidence": "Xuat hien 11 lan nhung duoc day ky tu phut 09:00 (cross-encoder) -> KHONG can hoc truoc",
+      "id": "rerank",
+      "label": "Taught-in-lesson",
+      "name": "Reranking (cross-encoder)",
+      "review": "",
+      "source": "L6-target-RAG-reranking"
+    }
+  ],
+  "questions": [
+    {
+      "answer": "B",
+      "options": [
+        "A · Xa nhau, cosine gan -1",
+        "B · Gan nhau, cosine cao",
+        "C · Khong lien quan nhau"
+      ],
+      "prereq": "Embedding vector",
+      "prereq_id": "emb",
+      "source_ref": "Lesson 3 · 18:40",
+      "stem": "Hai cau gan nghia thi embedding cua chung the nao?"
+    },
+    {
+      "answer": "B",
+      "options": [
+        "A · Giam dung luong luu tru",
+        "B · Giu mach ngu canh giua 2 chunk",
+        "C · Thay the reranker"
+      ],
+      "prereq": "Chunking (size / overlap)",
+      "prereq_id": "chunk",
+      "source_ref": "Slide L4 14-17",
+      "stem": "Chunk overlap 50 tokens de lam gi?"
+    },
+    {
+      "answer": "C",
+      "options": [
+        "A · Thay retriever, chay dau tien",
+        "B · Chay sau generator de sua cau tra loi",
+        "C · Sau retriever (top-50 -> top-5) roi moi generate"
+      ],
+      "prereq": "Reranking (cross-encoder)",
+      "prereq_id": "rerank",
+      "source_ref": "Day ky L6-09:00",
+      "stem": "Reranker dung o dau trong pipeline RAG?"
+    }
+  ],
+  "routes": {
+    "chunk": "Lesson 4 · Slide 14-17 (~3')",
+    "emb": "Lesson 3 · doan 18:40 (~2')"
+  },
+  "rules": {
+    "critical": [
+      "emb",
+      "chunk"
+    ],
+    "note": "Thieu 1 non-critical -> PARTIALLY READY. Thieu 1 critical -> NOT READY. Luon cho phep bo qua / vao bai ngay.",
+    "partially": "Review 1 concept ~4 phut",
+    "ready": "Vao thang Lesson 6"
+  }
+}

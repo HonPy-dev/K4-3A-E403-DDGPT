@@ -1,0 +1,108 @@
+{
+ "id": "T03",
+ "prompt": "Buoi nay co nhieu concept (token, attention, transformer, QKV, hallucination, API...). Chi chon toi da 3 Required.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\":[{\"name\":\"Kiến trúc Transformer\",\"label\":\"Required\",\"evidence\":\"Transformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó. [slide D1/8]\",\"source\":\"SLIDE\",\"review\":\"Cần biết Transformer là kiến trúc nền tảng của LLM, cho phép mỗi từ nhìn sang các từ quan trọng khác trong câu.\"},{\"name\":\"Cơ chế attention\",\"label\":\"Required\",\"evidence\":\"Thay vì đọc tuần tự từng chữ, cơ chế attention cho phép mỗi token: Chủ động “quay đầu” nhìn lại các token trước đó trong câu; Chấm điểm mức độ liên quan của từng token đối với nghĩa của mình; Khóa nghĩa theo ngữ cảnh — “nó” là quyển sách hay cái túi, tùy theo nó chú ý vào từ nào. [slide D1/15]\",\"source\":\"SLIDE\",\"review\":\"Cần hiểu attention là cơ chế giúp mỗi token nhìn sang các token khác và chấm điểm liên quan để hiểu ngữ cảnh.\"},{\"name\":\"Token\",\"label\":\"Required\",\"evidence\":\"Model không nhìn từ nguyên vẹn. Nó cắt văn bản thành các mảnh nhỏ gọi là token: có từ là một mảnh, có từ vỡ ba bốn mảnh, cả dấu câu và khoảng trắng cũng là mảnh. [slide D1/13]\",\"source\":\"SLIDE\",\"review\":\"Cần biết token là đơn vị văn bản nhỏ mà model xử lý, không phải từ nguyên vẹn.\"},{\"name\":\"Q–K–V trong self-attention\",\"label\":\"Helpful\",\"evidence\":\"Chữ Q đại diện cho query — cái truy vấn mà các bạn gửi vào. Chữ K đại diện cho key — cái nhãn. Còn chữ V là value. [T06-130]\",\"source\":\"T06\",\"review\":\"Biết Q là query, K là key, V là value sẽ giúp hiểu công thức self-attention dễ hơn.\"},{\"name\":\"Hallucination\",\"label\":\"Helpful\",\"evidence\":\"Một trong những nguyên nhân hallucination là nó chạy hết cả đoạn dài trong context window, quên ở giữa, rồi nó sẽ hallucinate — attention sẽ khắc phục được câu chuyện đấy. [T06-085]\",\"source\":\"T06\",\"review\":\"Biết hallucination là hiện tượng model tạo thông tin sai, thường do quên ngữ cảnh giữa.\"},{\"name\":\"Token economy và chi phí API\",\"label\":\"Taught-in-lesson\",\"evidence\":\"Mỗi lần chúng ta gọi API thì phải trả một khoản tiền, và khoản tiền đấy trả cho những bên cung cấp như OpenAI hoặc Google. Trong thế giới GenAI người ta gọi đó là token economy. [T06-154]\",\"source\":\"T06\",\"review\":\"Sẽ được dạy trong bài về cách tính chi phí input token cộng output token.\"}],\"questions\":[{\"prereq\":\"Kiến trúc Transformer\",\"stem\":\"Kiến trúc Transformer được giới thiệu lần đầu trong bài báo nào và năm nào?\",\"options\":[\"“Attention Is All You Need”, năm 2017\",\"“Attention Is All You Need”, năm 2015\",\"“Transformer Is All You Need”, năm 2017\"],\"answer\":\"A\",\"source\":\"T04-038\"},{\"prereq\":\"Cơ chế attention\",\"stem\":\"Cơ chế attention cho phép mỗi token làm gì?\",\"options\":[\"Chỉ đọc tuần tự token trước đó rồi dừng lại\",\"Chủ động nhìn lại các token trước đó và chấm điểm mức độ liên quan\",\"Bỏ qua toàn bộ ngữ cảnh xung quanh\"],\"answer\":\"B\",\"source\":\"SLIDE\"},{\"prereq\":\"Token\",\"stem\":\"Phát biểu nào đúng về token?\",\"options\":[\"Mỗi từ luôn tương ứng đúng một token\",\"Model đọc từng ký tự thay vì token\",\"Một từ có thể bị tách thành nhiều token, dấu câu và khoảng trắng cũng là token\"],\"answer\":\"C\",\"source\":\"SLIDE\"},{\"prereq\":\"Token economy và chi phí API\",\"stem\":\"Theo bài giảng, chi phí một lần gọi API được tính như thế nào?\",\"options\":[\"Chỉ tính output token\",\"Chỉ tính input token\",\"Tính cả input token cộng với output token\"],\"answer\":\"C\",\"source\":\"T06-155\"}],\"refusal\":false,\"refusal_reason\":\"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Kiến trúc Transformer",
+    "label": "Required",
+    "evidence": "Transformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó. [slide D1/8]",
+    "source": "SLIDE",
+    "review": "Cần biết Transformer là kiến trúc nền tảng của LLM, cho phép mỗi từ nhìn sang các từ quan trọng khác trong câu."
+   },
+   {
+    "name": "Cơ chế attention",
+    "label": "Required",
+    "evidence": "Thay vì đọc tuần tự từng chữ, cơ chế attention cho phép mỗi token: Chủ động “quay đầu” nhìn lại các token trước đó trong câu; Chấm điểm mức độ liên quan của từng token đối với nghĩa của mình; Khóa nghĩa theo ngữ cảnh — “nó” là quyển sách hay cái túi, tùy theo nó chú ý vào từ nào. [slide D1/15]",
+    "source": "SLIDE",
+    "review": "Cần hiểu attention là cơ chế giúp mỗi token nhìn sang các token khác và chấm điểm liên quan để hiểu ngữ cảnh."
+   },
+   {
+    "name": "Token",
+    "label": "Required",
+    "evidence": "Model không nhìn từ nguyên vẹn. Nó cắt văn bản thành các mảnh nhỏ gọi là token: có từ là một mảnh, có từ vỡ ba bốn mảnh, cả dấu câu và khoảng trắng cũng là mảnh. [slide D1/13]",
+    "source": "SLIDE",
+    "review": "Cần biết token là đơn vị văn bản nhỏ mà model xử lý, không phải từ nguyên vẹn."
+   },
+   {
+    "name": "Q–K–V trong self-attention",
+    "label": "Helpful",
+    "evidence": "Chữ Q đại diện cho query — cái truy vấn mà các bạn gửi vào. Chữ K đại diện cho key — cái nhãn. Còn chữ V là value. [T06-130]",
+    "source": "T06",
+    "review": "Biết Q là query, K là key, V là value sẽ giúp hiểu công thức self-attention dễ hơn."
+   },
+   {
+    "name": "Hallucination",
+    "label": "Helpful",
+    "evidence": "Một trong những nguyên nhân hallucination là nó chạy hết cả đoạn dài trong context window, quên ở giữa, rồi nó sẽ hallucinate — attention sẽ khắc phục được câu chuyện đấy. [T06-085]",
+    "source": "T06",
+    "review": "Biết hallucination là hiện tượng model tạo thông tin sai, thường do quên ngữ cảnh giữa."
+   },
+   {
+    "name": "Token economy và chi phí API",
+    "label": "Taught-in-lesson",
+    "evidence": "Mỗi lần chúng ta gọi API thì phải trả một khoản tiền, và khoản tiền đấy trả cho những bên cung cấp như OpenAI hoặc Google. Trong thế giới GenAI người ta gọi đó là token economy. [T06-154]",
+    "source": "T06",
+    "review": "Sẽ được dạy trong bài về cách tính chi phí input token cộng output token."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Kiến trúc Transformer",
+    "stem": "Kiến trúc Transformer được giới thiệu lần đầu trong bài báo nào và năm nào?",
+    "options": [
+     "“Attention Is All You Need”, năm 2017",
+     "“Attention Is All You Need”, năm 2015",
+     "“Transformer Is All You Need”, năm 2017"
+    ],
+    "answer": "A",
+    "source": "T04-038"
+   },
+   {
+    "prereq": "Cơ chế attention",
+    "stem": "Cơ chế attention cho phép mỗi token làm gì?",
+    "options": [
+     "Chỉ đọc tuần tự token trước đó rồi dừng lại",
+     "Chủ động nhìn lại các token trước đó và chấm điểm mức độ liên quan",
+     "Bỏ qua toàn bộ ngữ cảnh xung quanh"
+    ],
+    "answer": "B",
+    "source": "SLIDE"
+   },
+   {
+    "prereq": "Token",
+    "stem": "Phát biểu nào đúng về token?",
+    "options": [
+     "Mỗi từ luôn tương ứng đúng một token",
+     "Model đọc từng ký tự thay vì token",
+     "Một từ có thể bị tách thành nhiều token, dấu câu và khoảng trắng cũng là token"
+    ],
+    "answer": "C",
+    "source": "SLIDE"
+   },
+   {
+    "prereq": "Token economy và chi phí API",
+    "stem": "Theo bài giảng, chi phí một lần gọi API được tính như thế nào?",
+    "options": [
+     "Chỉ tính output token",
+     "Chỉ tính input token",
+     "Tính cả input token cộng với output token"
+    ],
+    "answer": "C",
+    "source": "T06-155"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Dung <=3 Required",
+ "hard_test": "HT3"
+}

@@ -1,0 +1,77 @@
+{
+ "id": "C01",
+ "prompt": "Xac dinh toi da 3 prerequisite BAT BUOC (Required) de theo duoc Lesson 6. Voi moi prerequisite: neu ro Required / Helpful / Taught-in-lesson, kem evidence lay tu nguon nao. Neu thieu can cu thi loai, khong bia.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Embedding\", \"label\": \"Required\", \"evidence\": \"Embedding là cách biến một đoạn text thành một vector số, sao cho hai câu gần nghĩa thì vector gần nhau. Đo bằng cosine similarity. [L3 18:40]\", \"source\": \"L3\", \"review\": \"Cần hiểu embedding để theo dense retrieval trong pipeline RAG.\"}, {\"name\": \"Chunking\", \"label\": \"Required\", \"evidence\": \"Chunk 500 tokens, overlap 50 tokens để giữ mạch ngữ cảnh giữa 2 chunk. Minh họa đứt mạch khi overlap bằng 0. Rule: câu hỏi cần cross-chunk thì tăng overlap. Dependency: chunking xấu thì retrieval xấu dù reranker tốt. [L4 slide 14-17]\", \"source\": \"L4\", \"review\": \"Cần biết chunking vì bài giả định chunk 500 tokens, overlap 50 mà không giảng lại.\"}, {\"name\": \"Retriever vs Reranker\", \"label\": \"Taught-in-lesson\", \"evidence\": \"Reranking được dạy kỹ trong bài (cross-encoder chấm từng cặp query-document). [L6 09:00] Giải thích: reranker KHÔNG thay được retriever. [L6 14:20] Instructor Intent: Sau bài học viên PHẢI phân biệt retriever vs reranker. [INTENT]\", \"source\": \"L6\", \"review\": \"Sẽ được dạy trong Lesson 6, không phải prerequisite bắt buộc trước bài.\"}], \"questions\": [{\"prereq\": \"Embedding\", \"stem\": \"Embedding được hiểu đúng nhất là gì?\", \"options\": [\"Cách biến một đoạn text thành vector số sao cho hai câu gần nghĩa thì vector gần nhau\", \"Cách nén văn bản thành file zip để lưu trữ\", \"Cách đếm số từ trong một câu\"], \"answer\": \"A\", \"source\": \"L3\"}, {\"prereq\": \"Chunking\", \"stem\": \"Theo Lesson 4, chunking thường dùng thông số nào?\", \"options\": [\"Chunk 500 tokens, overlap 50 tokens\", \"Chunk 50 tokens, overlap 500 tokens\", \"Chunk 1000 tokens, overlap 0 tokens\"], \"answer\": \"A\", \"source\": \"L4\"}, {\"prereq\": \"Retriever vs Reranker\", \"stem\": \"Phát biểu nào đúng về retriever và reranker trong pipeline RAG?\", \"options\": [\"Retriever lọc nhanh top-50, reranker xếp lại top-5\", \"Reranker thay thế hoàn toàn retriever\", \"Retriever chấm từng cặp query-document, reranker lấy top-50\"], \"answer\": \"A\", \"source\": \"L6\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Embedding",
+    "label": "Required",
+    "evidence": "Embedding là cách biến một đoạn text thành một vector số, sao cho hai câu gần nghĩa thì vector gần nhau. Đo bằng cosine similarity. [L3 18:40]",
+    "source": "L3",
+    "review": "Cần hiểu embedding để theo dense retrieval trong pipeline RAG."
+   },
+   {
+    "name": "Chunking",
+    "label": "Required",
+    "evidence": "Chunk 500 tokens, overlap 50 tokens để giữ mạch ngữ cảnh giữa 2 chunk. Minh họa đứt mạch khi overlap bằng 0. Rule: câu hỏi cần cross-chunk thì tăng overlap. Dependency: chunking xấu thì retrieval xấu dù reranker tốt. [L4 slide 14-17]",
+    "source": "L4",
+    "review": "Cần biết chunking vì bài giả định chunk 500 tokens, overlap 50 mà không giảng lại."
+   },
+   {
+    "name": "Retriever vs Reranker",
+    "label": "Taught-in-lesson",
+    "evidence": "Reranking được dạy kỹ trong bài (cross-encoder chấm từng cặp query-document). [L6 09:00] Giải thích: reranker KHÔNG thay được retriever. [L6 14:20] Instructor Intent: Sau bài học viên PHẢI phân biệt retriever vs reranker. [INTENT]",
+    "source": "L6",
+    "review": "Sẽ được dạy trong Lesson 6, không phải prerequisite bắt buộc trước bài."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Embedding",
+    "stem": "Embedding được hiểu đúng nhất là gì?",
+    "options": [
+     "Cách biến một đoạn text thành vector số sao cho hai câu gần nghĩa thì vector gần nhau",
+     "Cách nén văn bản thành file zip để lưu trữ",
+     "Cách đếm số từ trong một câu"
+    ],
+    "answer": "A",
+    "source": "L3"
+   },
+   {
+    "prereq": "Chunking",
+    "stem": "Theo Lesson 4, chunking thường dùng thông số nào?",
+    "options": [
+     "Chunk 500 tokens, overlap 50 tokens",
+     "Chunk 50 tokens, overlap 500 tokens",
+     "Chunk 1000 tokens, overlap 0 tokens"
+    ],
+    "answer": "A",
+    "source": "L4"
+   },
+   {
+    "prereq": "Retriever vs Reranker",
+    "stem": "Phát biểu nào đúng về retriever và reranker trong pipeline RAG?",
+    "options": [
+     "Retriever lọc nhanh top-50, reranker xếp lại top-5",
+     "Reranker thay thế hoàn toàn retriever",
+     "Retriever chấm từng cặp query-document, reranker lấy top-50"
+    ],
+    "answer": "A",
+    "source": "L6"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "warnings": [],
+ "expected": "Embedding Required + Chunking Required + Reranking Taught-in-lesson, citation du 4 nguon",
+ "hard_test": "HT1-HT3"
+}

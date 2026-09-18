@@ -1,0 +1,20 @@
+{
+ "id": "T06",
+ "prompt": "Xac dinh prerequisite cho buoi Day 2 Lap ke hoach kinh doanh (khong co trong nguon).",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [], \"questions\": [], \"refusal\": true, \"refusal_reason\": \"Nguồn được cung cấp chỉ gồm tài liệu Day 1 về transformer, token, attention và LLM (T06, T04, SLIDE), không có nội dung về 'Day 2 Lập kế hoạch kinh doanh'. Vì vậy không thể xác định prerequisite cho buổi học này từ các nguồn trong khóa. Vui lòng tham khảo tài liệu chính thức của Day 2 hoặc liên hệ bộ phận operations để được hỗ trợ.\"}",
+ "parsed": {
+  "prereqs": [],
+  "questions": [],
+  "refusal": true,
+  "refusal_reason": "Nguồn được cung cấp chỉ gồm tài liệu Day 1 về transformer, token, attention và LLM (T06, T04, SLIDE), không có nội dung về 'Day 2 Lập kế hoạch kinh doanh'. Vì vậy không thể xác định prerequisite cho buổi học này từ các nguồn trong khóa. Vui lòng tham khảo tài liệu chính thức của Day 2 hoặc liên hệ bộ phận operations để được hỗ trợ."
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Bao thieu can cu, khong tu tao",
+ "hard_test": "HT2-HT10"
+}

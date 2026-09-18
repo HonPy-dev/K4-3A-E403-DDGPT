@@ -1,0 +1,76 @@
+{
+ "id": "C16",
+ "prompt": "Chunking xau co anh huong gi den retrieval du reranker tot?",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Embedding\", \"label\": \"Required\", \"evidence\": \"L3: embedding là cách biến một đoạn text thành một vector số, sao cho hai câu gần nghĩa thì vector gần nhau. Đo bằng cosine similarity.\", \"source\": \"L3\", \"review\": \"Ôn lại định nghĩa embedding và cách đo cosine similarity trước khi học RAG + Reranking.\"}, {\"name\": \"Chunking\", \"label\": \"Required\", \"evidence\": \"L4: chunk 500 tokens, overlap 50 tokens để giữ mạch ngữ cảnh giữa 2 chunk. Dependency: chunking xấu thì retrieval xấu dù reranker tốt.\", \"source\": \"L4\", \"review\": \"Nắm quy tắc chunk 500 tokens, overlap 50 tokens và ảnh hưởng của chunking xấu đến retrieval.\"}, {\"name\": \"Retriever vs Reranker\", \"label\": \"Taught-in-lesson\", \"evidence\": \"L6: pipeline retrieve bằng retriever lấy top-50, rerank bằng reranker (cross-encoder) chọn top-5. Reranker KHÔNG thay được retriever.\", \"source\": \"L6\", \"review\": \"Sẽ được giảng kỹ trong bài: phân biệt retriever và reranker, vai trò từng thành phần trong pipeline.\"}], \"questions\": [{\"prereq\": \"Embedding\", \"stem\": \"Embedding trong bài RAG + Reranking được hiểu là gì?\", \"options\": [\"A. Cách biến một đoạn text thành vector số sao cho hai câu gần nghĩa thì vector gần nhau\", \"B. Cách nén toàn bộ tài liệu thành một file PDF duy nhất\", \"C. Cách đếm số từ trong mỗi chunk để so sánh độ dài\"], \"answer\": \"A\", \"source\": \"L3\"}, {\"prereq\": \"Chunking\", \"stem\": \"Theo bài học, chunking xấu ảnh hưởng thế nào đến retrieval dù reranker tốt?\", \"options\": [\"A. Không ảnh hưởng vì reranker luôn sửa được mọi lỗi\", \"B. Làm retrieval xấu đi dù reranker tốt\", \"C. Chỉ ảnh hưởng khi overlap bằng 0\"], \"answer\": \"B\", \"source\": \"L4\"}, {\"prereq\": \"Retriever vs Reranker\", \"stem\": \"Trong pipeline RAG + Reranking, vai trò của retriever và reranker được mô tả đúng nhất là gì?\", \"options\": [\"A. Retriever lọc nhanh top-50, reranker xếp lại top-5\", \"B. Retriever xếp lại top-5, reranker lọc nhanh top-50\", \"C. Cả hai đều làm cùng một việc nên có thể thay thế nhau\"], \"answer\": \"A\", \"source\": \"L6\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Embedding",
+    "label": "Required",
+    "evidence": "L3: embedding là cách biến một đoạn text thành một vector số, sao cho hai câu gần nghĩa thì vector gần nhau. Đo bằng cosine similarity.",
+    "source": "L3",
+    "review": "Ôn lại định nghĩa embedding và cách đo cosine similarity trước khi học RAG + Reranking."
+   },
+   {
+    "name": "Chunking",
+    "label": "Required",
+    "evidence": "L4: chunk 500 tokens, overlap 50 tokens để giữ mạch ngữ cảnh giữa 2 chunk. Dependency: chunking xấu thì retrieval xấu dù reranker tốt.",
+    "source": "L4",
+    "review": "Nắm quy tắc chunk 500 tokens, overlap 50 tokens và ảnh hưởng của chunking xấu đến retrieval."
+   },
+   {
+    "name": "Retriever vs Reranker",
+    "label": "Taught-in-lesson",
+    "evidence": "L6: pipeline retrieve bằng retriever lấy top-50, rerank bằng reranker (cross-encoder) chọn top-5. Reranker KHÔNG thay được retriever.",
+    "source": "L6",
+    "review": "Sẽ được giảng kỹ trong bài: phân biệt retriever và reranker, vai trò từng thành phần trong pipeline."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Embedding",
+    "stem": "Embedding trong bài RAG + Reranking được hiểu là gì?",
+    "options": [
+     "A. Cách biến một đoạn text thành vector số sao cho hai câu gần nghĩa thì vector gần nhau",
+     "B. Cách nén toàn bộ tài liệu thành một file PDF duy nhất",
+     "C. Cách đếm số từ trong mỗi chunk để so sánh độ dài"
+    ],
+    "answer": "A",
+    "source": "L3"
+   },
+   {
+    "prereq": "Chunking",
+    "stem": "Theo bài học, chunking xấu ảnh hưởng thế nào đến retrieval dù reranker tốt?",
+    "options": [
+     "A. Không ảnh hưởng vì reranker luôn sửa được mọi lỗi",
+     "B. Làm retrieval xấu đi dù reranker tốt",
+     "C. Chỉ ảnh hưởng khi overlap bằng 0"
+    ],
+    "answer": "B",
+    "source": "L4"
+   },
+   {
+    "prereq": "Retriever vs Reranker",
+    "stem": "Trong pipeline RAG + Reranking, vai trò của retriever và reranker được mô tả đúng nhất là gì?",
+    "options": [
+     "A. Retriever lọc nhanh top-50, reranker xếp lại top-5",
+     "B. Retriever xếp lại top-5, reranker lọc nhanh top-50",
+     "C. Cả hai đều làm cùng một việc nên có thể thay thế nhau"
+    ],
+    "answer": "A",
+    "source": "L6"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Co — chunking xau thi retrieval xau (dependency L4)",
+ "hard_test": "HT-domain4"
+}

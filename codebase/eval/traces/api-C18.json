@@ -1,0 +1,83 @@
+{
+ "id": "C18",
+ "prompt": "Cosine similarity la Required hay Helpful cho Lesson 6?",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Cosine similarity\", \"label\": \"Required\", \"evidence\": \"Embedding là cách biến một đoạn text thành một vector số, sao cho hai câu gần nghĩa thì vector gần nhau. Đo bằng cosine similarity.\", \"source\": \"L3\", \"review\": \"Cần biết cosine similarity để hiểu cách so sánh vector trong dense retrieval của pipeline RAG.\"}, {\"name\": \"Dense retrieval\", \"label\": \"Required\", \"evidence\": \"Bài dùng embedding để giảng dense retrieval mà KHÔNG định nghĩa lại embedding.\", \"source\": \"L6\", \"review\": \"Cần biết dense retrieval là gì để theo dõi bước retrieve trong pipeline RAG.\"}, {\"name\": \"Chunking\", \"label\": \"Helpful\", \"evidence\": \"Bài giả định chunk 500 tokens, overlap 50 mà không giảng lại chunking.\", \"source\": \"L6\", \"review\": \"Biết chunking giúp hiểu dữ liệu đầu vào của retriever, nhưng bài không giảng lại.\"}, {\"name\": \"Retriever vs Reranker\", \"label\": \"Taught-in-lesson\", \"evidence\": \"Reranking được dạy kỹ trong bài (cross-encoder chấm từng cặp query-document). Giải thích: reranker KHÔNG thay được retriever.\", \"source\": \"L6\", \"review\": \"Sẽ được dạy trong Lesson 6, không cần biết trước.\"}], \"questions\": [{\"prereq\": \"Cosine similarity\", \"stem\": \"Cosine similarity được dùng để làm gì trong Lesson 6?\", \"options\": [\"Đo độ tương đồng giữa hai vector embedding\", \"Đếm số token trong một chunk\", \"Xếp hạng câu trả lời bằng cross-encoder\"], \"answer\": \"A\", \"source\": \"L3\"}, {\"prereq\": \"Dense retrieval\", \"stem\": \"Dense retrieval trong pipeline RAG của Lesson 6 sử dụng gì để truy xuất?\", \"options\": [\"Embedding vector\", \"BM25\", \"Cross-encoder\"], \"answer\": \"A\", \"source\": \"L6\"}, {\"prereq\": \"Retriever vs Reranker\", \"stem\": \"Theo Lesson 6, vai trò của reranker là gì?\", \"options\": [\"Xếp lại top-5 từ top-50 của retriever\", \"Thay thế hoàn toàn retriever\", \"Tạo embedding cho tài liệu\"], \"answer\": \"A\", \"source\": \"L6\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Cosine similarity",
+    "label": "Required",
+    "evidence": "Embedding là cách biến một đoạn text thành một vector số, sao cho hai câu gần nghĩa thì vector gần nhau. Đo bằng cosine similarity.",
+    "source": "L3",
+    "review": "Cần biết cosine similarity để hiểu cách so sánh vector trong dense retrieval của pipeline RAG."
+   },
+   {
+    "name": "Dense retrieval",
+    "label": "Required",
+    "evidence": "Bài dùng embedding để giảng dense retrieval mà KHÔNG định nghĩa lại embedding.",
+    "source": "L6",
+    "review": "Cần biết dense retrieval là gì để theo dõi bước retrieve trong pipeline RAG."
+   },
+   {
+    "name": "Chunking",
+    "label": "Helpful",
+    "evidence": "Bài giả định chunk 500 tokens, overlap 50 mà không giảng lại chunking.",
+    "source": "L6",
+    "review": "Biết chunking giúp hiểu dữ liệu đầu vào của retriever, nhưng bài không giảng lại."
+   },
+   {
+    "name": "Retriever vs Reranker",
+    "label": "Taught-in-lesson",
+    "evidence": "Reranking được dạy kỹ trong bài (cross-encoder chấm từng cặp query-document). Giải thích: reranker KHÔNG thay được retriever.",
+    "source": "L6",
+    "review": "Sẽ được dạy trong Lesson 6, không cần biết trước."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Cosine similarity",
+    "stem": "Cosine similarity được dùng để làm gì trong Lesson 6?",
+    "options": [
+     "Đo độ tương đồng giữa hai vector embedding",
+     "Đếm số token trong một chunk",
+     "Xếp hạng câu trả lời bằng cross-encoder"
+    ],
+    "answer": "A",
+    "source": "L3"
+   },
+   {
+    "prereq": "Dense retrieval",
+    "stem": "Dense retrieval trong pipeline RAG của Lesson 6 sử dụng gì để truy xuất?",
+    "options": [
+     "Embedding vector",
+     "BM25",
+     "Cross-encoder"
+    ],
+    "answer": "A",
+    "source": "L6"
+   },
+   {
+    "prereq": "Retriever vs Reranker",
+    "stem": "Theo Lesson 6, vai trò của reranker là gì?",
+    "options": [
+     "Xếp lại top-5 từ top-50 của retriever",
+     "Thay thế hoàn toàn retriever",
+     "Tạo embedding cho tài liệu"
+    ],
+    "answer": "A",
+    "source": "L6"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Helpful — biet thi nhanh, khong biet van theo duoc",
+ "hard_test": "HT-classification"
+}

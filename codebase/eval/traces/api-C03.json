@@ -1,0 +1,108 @@
+{
+ "id": "C03",
+ "prompt": "Lesson 6 co nhieu concept (embedding, chunking, cosine, vector DB, retriever, reranker, BM25). Chi chon toi da 3 Required quan trong nhat.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\":[{\"name\":\"Embedding\",\"label\":\"Required\",\"evidence\":\"[L3] embedding la cach bien mot doan text thanh mot vector so, sao cho hai cau gan nghia thi vector gan nhau. Do bang cosine similarity.\",\"source\":\"L3\",\"review\":\"On lai Lesson 3: embedding la gi, cach do bang cosine similarity.\"},{\"name\":\"Chunking\",\"label\":\"Required\",\"evidence\":\"[L4] chunk 500 tokens, overlap 50 tokens de giu mach ngu canh giua 2 chunk. Dependency: chunking xau thi retrieval xau du reranker tot.\",\"source\":\"L4\",\"review\":\"On lai Lesson 4: chunk 500 tokens, overlap 50, anh huong den retrieval.\"},{\"name\":\"Retriever\",\"label\":\"Required\",\"evidence\":\"[L6] Pipeline: retrieve bang retriever lay top-50, rerank bang reranker (cross-encoder) chon top-5, generate cau tra loi.\",\"source\":\"L6\",\"review\":\"Nam vai tro retriever: loc nhanh top-50 truoc khi rerank.\"},{\"name\":\"Reranker\",\"label\":\"Taught-in-lesson\",\"evidence\":\"[L6] Reranking duoc day ky trong bai (cross-encoder cham tung cap query-document). [14:20] reranker KHONG thay duoc retriever.\",\"source\":\"L6\",\"review\":\"Se hoc trong bai: reranker cross-encoder xep lai top-5, khong thay retriever.\"},{\"name\":\"Cosine similarity\",\"label\":\"Helpful\",\"evidence\":\"[L3] Do bang cosine similarity. Vi du truc quan cosine tren slide Lesson 3.\",\"source\":\"L3\",\"review\":\"Biet cosine similarity de hieu embedding gan nhau.\"},{\"name\":\"BM25\",\"label\":\"Helpful\",\"evidence\":\"[INTENT] KHONG can dao sau BM25.\",\"source\":\"INTENT\",\"review\":\"Chi can biet so luoc, khong dao sau.\"}],\"questions\":[{\"prereq\":\"Embedding\",\"stem\":\"Embedding trong bai duoc hieu la gi?\",\"options\":[\"A. Bien mot doan text thanh mot vector so sao cho hai cau gan nghia thi vector gan nhau\",\"B. Cat van ban thanh cac chunk 500 tokens\",\"C. Xep hang lai cac tai lieu sau khi retrieve\"],\"answer\":\"A\",\"source\":\"L3\"},{\"prereq\":\"Chunking\",\"stem\":\"Cau hinh chunking duoc bai gia dinh la gi?\",\"options\":[\"A. Chunk 500 tokens, overlap 50 tokens\",\"B. Chunk 50 tokens, overlap 500 tokens\",\"C. Chunk 1000 tokens, overlap 0 tokens\"],\"answer\":\"A\",\"source\":\"L4\"},{\"prereq\":\"Retriever\",\"stem\":\"Trong pipeline RAG cua Lesson 6, retriever lam gi?\",\"options\":[\"A. Retrieve lay top-50 truoc khi rerank\",\"B. Cham tung cap query-document de chon top-5\",\"C. Sinh cau tra loi cuoi cung\"],\"answer\":\"A\",\"source\":\"L6\"},{\"prereq\":\"Reranker\",\"stem\":\"Phat bieu nao dung ve reranker trong Lesson 6?\",\"options\":[\"A. Reranker cross-encoder xep lai top-5 va khong thay duoc retriever\",\"B. Reranker thay duoc retriever trong moi truong hop\",\"C. Reranker dung de chunk van ban thanh 500 tokens\"],\"answer\":\"A\",\"source\":\"L6\"}],\"refusal\":false,\"refusal_reason\":\"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Embedding",
+    "label": "Required",
+    "evidence": "[L3] embedding la cach bien mot doan text thanh mot vector so, sao cho hai cau gan nghia thi vector gan nhau. Do bang cosine similarity.",
+    "source": "L3",
+    "review": "On lai Lesson 3: embedding la gi, cach do bang cosine similarity."
+   },
+   {
+    "name": "Chunking",
+    "label": "Required",
+    "evidence": "[L4] chunk 500 tokens, overlap 50 tokens de giu mach ngu canh giua 2 chunk. Dependency: chunking xau thi retrieval xau du reranker tot.",
+    "source": "L4",
+    "review": "On lai Lesson 4: chunk 500 tokens, overlap 50, anh huong den retrieval."
+   },
+   {
+    "name": "Retriever",
+    "label": "Required",
+    "evidence": "[L6] Pipeline: retrieve bang retriever lay top-50, rerank bang reranker (cross-encoder) chon top-5, generate cau tra loi.",
+    "source": "L6",
+    "review": "Nam vai tro retriever: loc nhanh top-50 truoc khi rerank."
+   },
+   {
+    "name": "Reranker",
+    "label": "Taught-in-lesson",
+    "evidence": "[L6] Reranking duoc day ky trong bai (cross-encoder cham tung cap query-document). [14:20] reranker KHONG thay duoc retriever.",
+    "source": "L6",
+    "review": "Se hoc trong bai: reranker cross-encoder xep lai top-5, khong thay retriever."
+   },
+   {
+    "name": "Cosine similarity",
+    "label": "Helpful",
+    "evidence": "[L3] Do bang cosine similarity. Vi du truc quan cosine tren slide Lesson 3.",
+    "source": "L3",
+    "review": "Biet cosine similarity de hieu embedding gan nhau."
+   },
+   {
+    "name": "BM25",
+    "label": "Helpful",
+    "evidence": "[INTENT] KHONG can dao sau BM25.",
+    "source": "INTENT",
+    "review": "Chi can biet so luoc, khong dao sau."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Embedding",
+    "stem": "Embedding trong bai duoc hieu la gi?",
+    "options": [
+     "A. Bien mot doan text thanh mot vector so sao cho hai cau gan nghia thi vector gan nhau",
+     "B. Cat van ban thanh cac chunk 500 tokens",
+     "C. Xep hang lai cac tai lieu sau khi retrieve"
+    ],
+    "answer": "A",
+    "source": "L3"
+   },
+   {
+    "prereq": "Chunking",
+    "stem": "Cau hinh chunking duoc bai gia dinh la gi?",
+    "options": [
+     "A. Chunk 500 tokens, overlap 50 tokens",
+     "B. Chunk 50 tokens, overlap 500 tokens",
+     "C. Chunk 1000 tokens, overlap 0 tokens"
+    ],
+    "answer": "A",
+    "source": "L4"
+   },
+   {
+    "prereq": "Retriever",
+    "stem": "Trong pipeline RAG cua Lesson 6, retriever lam gi?",
+    "options": [
+     "A. Retrieve lay top-50 truoc khi rerank",
+     "B. Cham tung cap query-document de chon top-5",
+     "C. Sinh cau tra loi cuoi cung"
+    ],
+    "answer": "A",
+    "source": "L6"
+   },
+   {
+    "prereq": "Reranker",
+    "stem": "Phat bieu nao dung ve reranker trong Lesson 6?",
+    "options": [
+     "A. Reranker cross-encoder xep lai top-5 va khong thay duoc retriever",
+     "B. Reranker thay duoc retriever trong moi truong hop",
+     "C. Reranker dung de chunk van ban thanh 500 tokens"
+    ],
+    "answer": "A",
+    "source": "L6"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Dung 2 Required (embedding, chunking); khong vuot qua 3",
+ "hard_test": "HT3"
+}

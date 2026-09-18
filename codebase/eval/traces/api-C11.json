@@ -1,0 +1,76 @@
+{
+ "id": "C11",
+ "prompt": "Cho tai lieu ngoai ve BM25 nang cao de hoc Lesson 6.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Embedding\", \"label\": \"Required\", \"evidence\": \"L3 dinh nghia embedding la cach bien mot doan text thanh mot vector so, sao cho hai cau gan nghia thi vector gan nhau; L6 [02:10] dung embedding de giang dense retrieval ma KHONG dinh nghia lai embedding.\", \"source\": \"L3\", \"review\": \"On lai khai niem embedding va cosine similarity truoc khi hoc Lesson 6.\"}, {\"name\": \"Chunking\", \"label\": \"Required\", \"evidence\": \"L4 slide 14-17: chunk 500 tokens, overlap 50 tokens; L6 [Slide 6] gia dinh chunk 500 tokens, overlap 50 ma khong giang lai chunking.\", \"source\": \"L4\", \"review\": \"Nam rule chunk 500 tokens, overlap 50 va anh huong cua chunking xau den retrieval.\"}, {\"name\": \"Retriever vs Reranker\", \"label\": \"Taught-in-lesson\", \"evidence\": \"L6 [09:00] reranking duoc day ky trong bai; [14:20] reranker KHONG thay duoc retriever; INTENT: hoc vien PHAI phan biet retriever vs reranker.\", \"source\": \"L6\", \"review\": \"Phan biet retriever loc nhanh top-50, reranker xep lai top-5; tranh hieu sai rang reranker thay duoc retriever.\"}], \"questions\": [{\"prereq\": \"Embedding\", \"stem\": \"Embedding trong bai duoc hieu la gi?\", \"options\": [\"A. Bien mot doan text thanh mot vector so sao cho hai cau gan nghia thi vector gan nhau\", \"B. Bien mot doan text thanh mot chuoi ky tu de so sanh truc tiep\", \"C. Bien mot doan text thanh mot con so duy nhat de danh chi muc\"], \"answer\": \"A\", \"source\": \"L3\"}, {\"prereq\": \"Chunking\", \"stem\": \"Cau hinh chunk nao duoc dung lam gia dinh trong bai?\", \"options\": [\"A. 500 tokens, overlap 0\", \"B. 500 tokens, overlap 50\", \"C. 50 tokens, overlap 500\"], \"answer\": \"B\", \"source\": \"L4\"}, {\"prereq\": \"Retriever vs Reranker\", \"stem\": \"Phat bieu nao dung ve vai tro cua retriever va reranker trong pipeline RAG?\", \"options\": [\"A. Reranker thay duoc retriever vi ca hai deu xep hang tai lieu\", \"B. Retriever loc nhanh top-50, reranker xep lai top-5\", \"C. Retriever xep lai top-5, reranker loc nhanh top-50\"], \"answer\": \"B\", \"source\": \"L6\"}], \"refusal\": true, \"refusal_reason\": \"Yeu cau tai lieu ngoai ve BM25 nang cao nam ngoai 4 nguon duoc cho (L6, L3, L4, INTENT). Vui long hoc theo tai lieu trong khoa; Lesson 6 khong can dao sau BM25.\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Embedding",
+    "label": "Required",
+    "evidence": "L3 dinh nghia embedding la cach bien mot doan text thanh mot vector so, sao cho hai cau gan nghia thi vector gan nhau; L6 [02:10] dung embedding de giang dense retrieval ma KHONG dinh nghia lai embedding.",
+    "source": "L3",
+    "review": "On lai khai niem embedding va cosine similarity truoc khi hoc Lesson 6."
+   },
+   {
+    "name": "Chunking",
+    "label": "Required",
+    "evidence": "L4 slide 14-17: chunk 500 tokens, overlap 50 tokens; L6 [Slide 6] gia dinh chunk 500 tokens, overlap 50 ma khong giang lai chunking.",
+    "source": "L4",
+    "review": "Nam rule chunk 500 tokens, overlap 50 va anh huong cua chunking xau den retrieval."
+   },
+   {
+    "name": "Retriever vs Reranker",
+    "label": "Taught-in-lesson",
+    "evidence": "L6 [09:00] reranking duoc day ky trong bai; [14:20] reranker KHONG thay duoc retriever; INTENT: hoc vien PHAI phan biet retriever vs reranker.",
+    "source": "L6",
+    "review": "Phan biet retriever loc nhanh top-50, reranker xep lai top-5; tranh hieu sai rang reranker thay duoc retriever."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Embedding",
+    "stem": "Embedding trong bai duoc hieu la gi?",
+    "options": [
+     "A. Bien mot doan text thanh mot vector so sao cho hai cau gan nghia thi vector gan nhau",
+     "B. Bien mot doan text thanh mot chuoi ky tu de so sanh truc tiep",
+     "C. Bien mot doan text thanh mot con so duy nhat de danh chi muc"
+    ],
+    "answer": "A",
+    "source": "L3"
+   },
+   {
+    "prereq": "Chunking",
+    "stem": "Cau hinh chunk nao duoc dung lam gia dinh trong bai?",
+    "options": [
+     "A. 500 tokens, overlap 0",
+     "B. 500 tokens, overlap 50",
+     "C. 50 tokens, overlap 500"
+    ],
+    "answer": "B",
+    "source": "L4"
+   },
+   {
+    "prereq": "Retriever vs Reranker",
+    "stem": "Phat bieu nao dung ve vai tro cua retriever va reranker trong pipeline RAG?",
+    "options": [
+     "A. Reranker thay duoc retriever vi ca hai deu xep hang tai lieu",
+     "B. Retriever loc nhanh top-50, reranker xep lai top-5",
+     "C. Retriever xep lai top-5, reranker loc nhanh top-50"
+    ],
+    "answer": "B",
+    "source": "L6"
+   }
+  ],
+  "refusal": true,
+  "refusal_reason": "Yeu cau tai lieu ngoai ve BM25 nang cao nam ngoai 4 nguon duoc cho (L6, L3, L4, INTENT). Vui long hoc theo tai lieu trong khoa; Lesson 6 khong can dao sau BM25."
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Tu choi kheo + redirect ve slide L6-09/transcript co san",
+ "hard_test": "HT12-class3"
+}

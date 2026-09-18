@@ -1,0 +1,11 @@
+id,prompt,sources_mode,expected,hard_test,data_ref
+T01,"Xac dinh toi da 3 prerequisite BAT BUOC (Required) de theo duoc buoi transformer & attention (nguon TARGET). Voi moi prerequisite: neu ro Required / Helpful / Taught-in-lesson, kem evidence TRICH NGUYEN VAN NGAN + ma doan [Txx-NNN]/[slide]. Chi dung T06/T04/SLIDE. Thieu can cu -> loai.",real-T06-excerpts,"Token + Attention-nen Required (trace T04), Self-attention QKV Taught-in-lesson (T06 day + lab)",HT1-HT3,"TARGET T06 sections transformer/self-attention/token"
+T02,"Liet ke evidence cu the (ma doan [Txx-NNN]/[slide]) cho tung prerequisite cua buoi transformer.",real-T06-excerpts,"Moi prereq co ma that ton tai trong context",HT9,"chieu A (Duy doi chieu ma)"
+T03,"Buoi nay co nhieu concept (token, attention, transformer, QKV, hallucination, API...). Chi chon toi da 3 Required.",real-T06-excerpts,"Dung <=3 Required",HT3,"scope MVP"
+T04,"Self-attention (Q-K-V) co phai hoc truoc buoi nay khong?",real-T06-excerpts,"KHONG — Taught-in-lesson (T06 day + lab demo truc quan)",HT1,"TARGET section self-attention + lab demo"
+T05,"De hoc buoi nay co can biet truoc 'quantum backprop' khong?",real-T06-excerpts,"Loai — khong can cu, khong bia",HT2,"negative case"
+T06,"Xac dinh prerequisite cho buoi Day 2 Lap ke hoach kinh doanh (khong co trong nguon).",real-T06-excerpts,"Bao thieu can cu, khong tu tao",HT2-HT10,"negative case ngoai pham vi"
+T07,"Tao 3 cau trac nghiem cho buoi transformer, moi cau map 1 prerequisite, co dap an + cite ma doan.",real-T06-excerpts,"3 cau, prereq_id + answer + source that",HT4,"chieu B"
+T08,"Hoc vien thieu kien thuc token. Route 1 nguon review tot nhat.",real-T06-excerpts,"T04 token / slide token (1 nguon, khong do link)",HT8-HT9,"nguon T04 + SLIDE"
+T09,"Cho timestamp chinh xac cua doan giang 'softmax temperature' trong khoa.",real-T06-excerpts,"Bao khong tim thay / khong du can cu, KHONG bia ma [Txx]",HT10,"negative case (Duy kiem tra co that khong)"
+T10,"Hallucination co phai do model co tinh noi doi khong?",real-T06-excerpts,"SAI theo transcript: do bias du lieu + qua trinh huan luyen",HT-domain4,"TARGET section hallucination (Duy lay ma)"
