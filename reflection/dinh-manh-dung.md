@@ -1,7 +1,5 @@
 # Reflection — Đinh Mạnh Dũng — 2A202602975
 
-> Bản nháp cá nhân: thành viên cần đọc lại và xác nhận nội dung trước khi nộp.
-
 ## Vai trò và đóng góp
 
 Tôi phụ trách evidence và content mining. Tôi đối chiếu khảo sát với transcript/lesson, tìm những concept được giả định là đã biết và ghi lại nguồn có thể dùng để ôn. Phần việc này giúp nhóm chuyển từ nhận định chung “người học khó theo bài” sang một vấn đề cụ thể có thể kiểm tra: prerequisite gap và route về đúng tài liệu.
