@@ -159,5 +159,4 @@ Trạng thái CP4: **chốt phạm vi và quality bar ngày 17/09/2026**
 1. `evidence/survey-responses.csv` đã đồng bộ 25 phản hồi đang hoạt động từ Google Form; Form không thu quote hoặc consent nên hai loại bằng chứng này vẫn chưa có.
 2. Log competitive research đã hoàn tất ở mức desk research; chưa claim phiên dùng thử Khanmigo có đăng nhập.
 3. Lượt live đã hoàn tất 20 case; bốn case C03/C11/C13/C21 chưa đạt strict và đã có failure analysis.
-4. Validation thật chưa hoàn thành. U01/U02 là dữ liệu mô phỏng, `consent_confirmed=false`, không có evidence người dùng thật và không được tính R6.
-5. C18 đã được xác nhận pass ở lượt live; giữ trace fail cũ và trace pass mới làm bằng chứng before/after.
+4. C18 đã được xác nhận pass ở lượt live; giữ trace fail cũ và trace pass mới làm bằng chứng before/after.
