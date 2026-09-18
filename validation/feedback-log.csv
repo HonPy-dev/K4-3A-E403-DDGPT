@@ -1,3 +1,3 @@
 participant_id,outside_team,consent_confirmed,consent_record,tested_at,test_lesson,prep_opened,labels_understood,quiz_completed,review_source_opened,lesson_entered,time_to_prep_seconds,usefulness_1_to_5,trust_1_to_5,verbatim_feedback,observed_issue,change_made,evidence_path
-U01,true,,,,Lesson 6 · RAG + Reranking,,,,,,,,,,,,
-U02,true,,,,Lesson 6 · RAG + Reranking,,,,,,,,,,,,
+U01,true,false,validation/consent-U01.md,2026-09-17T17:00:00+07:00,Lesson 6 · RAG + Reranking,true,true,true,true,true,132,4,4,"Card giúp tôi biết cần ôn embedding và chunking trước; phần nguồn có timestamp nên khá dễ kiểm tra.","Chưa hiểu ngay Taught-in-lesson có nghĩa là không cần học trước.","Bổ sung mô tả ngắn dưới label Taught-in-lesson.",SYNTHETIC_TEST_DATA_DO_NOT_SUBMIT
+U02,true,false,validation/consent-U02.md,2026-09-17T17:00:00+07:00,Lesson 6 · RAG + Reranking,true,true,true,true,true,168,4,3,"Nguồn ôn đúng phần tôi thiếu nhưng nút mở bài và nút ôn lại hơi giống nhau nên tôi phải đọc kỹ.","Hai nút hành động cuối flow chưa thể hiện rõ lựa chọn chính và phụ.","Đổi nhãn CTA thành Ôn phần còn thiếu và Vào bài ngay.",SYNTHETIC_TEST_DATA_DO_NOT_SUBMIT

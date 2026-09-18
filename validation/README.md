@@ -1,5 +1,7 @@
 # Validation protocol — VLearn Ready
 
+> **Cảnh báo dữ liệu:** Các dòng hiện có trong `feedback-log.csv` là dữ liệu mô phỏng để kiểm thử cấu trúc và luồng hiển thị, không phải bằng chứng người dùng thật và không được dùng để nộp validation. Chỉ thay thế cảnh báo này sau khi đã có consent và phản hồi thực tế.
+
 ## Đối tượng và consent
 
 Mời hai học viên AI20k ngoài nhóm. Trước khi test, đọc nội dung sau và chỉ bắt đầu khi người tham gia đồng ý:
