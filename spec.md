@@ -126,7 +126,16 @@ Trạng thái CP4: **chốt phạm vi và quality bar ngày 17/09/2026**
 | Code / UI | Phạm Thành Trung — 2A202602949 | Hoàn thiện UI, kiểm tra Prep → Quiz → Review → Lesson |
 | Evaluation / demo | Từ Hoàng Giang — 2A202602363 | Chấm case khó, tổng hợp F/C/R và quay video dự phòng |
 
-**Willing users:** Form có 11 người chọn `Có` và 10 người chọn `Có thể nếu phù hợp lịch`. Trước CP5, tuyển ít nhất 2 người trong nhóm này, xin consent riêng, rồi lưu mã ẩn danh, feedback nguyên văn và changelog tại `validation/`.
+**Willing users:** Form có 11 người chọn `Có` và 10 người chọn `Có thể nếu phù hợp lịch`. Nhóm chưa hoàn thành phiên validation trực tiếp với người ngoài nhóm và chưa có consent hợp lệ để sử dụng quote.
+
+**Trạng thái validation:** hai dòng `U01`, `U02` trong `validation/feedback-log.csv` là dữ liệu mô phỏng dùng để kiểm tra cấu trúc log và rehearsal luồng test. Cả hai có `consent_confirmed=false`; `evidence_path=SYNTHETIC_TEST_DATA_DO_NOT_SUBMIT`. Hai file consent cũng ghi trạng thái chưa xác nhận và không đồng ý dùng quote. Vì vậy nhóm **không xem các dòng này là phản hồi nguyên văn của người dùng thật và không claim điểm R6**.
+
+| Giả thuyết từ rehearsal | Quyết định dự kiến | Trạng thái |
+|---|---|---|
+| Nhãn `Taught-in-lesson` có thể khiến người học chưa rõ liệu có phải học trước | Bổ sung mô tả `Sẽ được dạy trong bài — không bắt buộc học trước` ngay dưới label | Chưa triển khai; cần user thật xác nhận |
+| Hai CTA cuối flow có thể chưa phân biệt rõ lựa chọn chính và phụ | Đổi nhãn thành `Ôn phần còn thiếu` và `Vào bài ngay` | Chưa triển khai; cần user thật xác nhận |
+
+**Điều kiện để chuyển sang validation thật:** mời ít nhất hai người ngoài nhóm dùng prototype; giao task trong `validation/README.md`; quan sát không gợi ý; chỉ ghi quote khi họ đồng ý; đặt `consent_confirmed=true`; lưu evidence có thể truy vết. Không chuyển trạng thái hai dòng synthetic hiện tại thành dữ liệu thật.
 
 **Kế hoạch LEC 6 / LAB 6:**
 
@@ -143,11 +152,12 @@ Trạng thái CP4: **chốt phạm vi và quality bar ngày 17/09/2026**
 | CP3 lượt 2 | Siết rule 3–5 câu, 3 options, prerequisite mapping | C07/C15 format cần cải thiện |
 | CP4 | Khóa bar F/C/R ≥70% và 0 bịa citation/timestamp | Giữ chuẩn “đạt” cố định trước CP5/CP6 |
 | CP4 · C18 | Bổ sung tiêu chí dependency và boundary example vào system prompt | C18 fail ổn định do model nhầm Helpful với Required |
+| CP5 · validation rehearsal | Chuẩn bị hai kịch bản U01/U02 và hai giả thuyết cải tiến UI | Kiểm tra protocol; dữ liệu được đánh dấu synthetic và không dùng để claim R6 |
 
 ## Tự khai phần chưa hoàn thành tại CP4
 
 1. `evidence/survey-responses.csv` đã đồng bộ 25 phản hồi đang hoạt động từ Google Form; Form không thu quote hoặc consent nên hai loại bằng chứng này vẫn chưa có.
 2. Log competitive research đã hoàn tất ở mức desk research; chưa claim phiên dùng thử Khanmigo có đăng nhập.
 3. Lượt live đã hoàn tất 20 case; bốn case C03/C11/C13/C21 chưa đạt strict và đã có failure analysis.
-4. `validation/feedback-log.csv` đã chuẩn bị hai slot; cần hai người ngoài nhóm thực sự test và consent.
+4. Validation thật chưa hoàn thành. U01/U02 là dữ liệu mô phỏng, `consent_confirmed=false`, không có evidence người dùng thật và không được tính R6.
 5. C18 đã được xác nhận pass ở lượt live; giữ trace fail cũ và trace pass mới làm bằng chứng before/after.
