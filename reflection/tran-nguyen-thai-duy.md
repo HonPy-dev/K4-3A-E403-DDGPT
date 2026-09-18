@@ -1,6 +1,5 @@
 # Reflection — Trần Nguyễn Thái Duy — 2A202602991
 
-> Bản nháp cá nhân: thành viên cần đọc lại và xác nhận nội dung trước khi nộp.
 
 ## Vai trò và đóng góp
 
