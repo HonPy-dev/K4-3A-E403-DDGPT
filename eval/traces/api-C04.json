@@ -1,0 +1,83 @@
+{
+ "id": "C04",
+ "prompt": "Reranking co phai prerequisite bat buoc phai hoc truoc Lesson 6 khong?",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Embedding\", \"label\": \"Required\", \"evidence\": \"L6 [02:10] Bai dung embedding de giang dense retrieval ma KHONG dinh nghia lai embedding.\", \"source\": \"L6\", \"review\": \"On lai khai niem embedding truoc khi hoc Lesson 6.\"}, {\"name\": \"Chunking\", \"label\": \"Required\", \"evidence\": \"L6 [Slide 6] Bai gia dinh chunk 500 tokens, overlap 50 ma khong giang lai chunking.\", \"source\": \"L6\", \"review\": \"Nam chunk 500 tokens, overlap 50 truoc khi hoc Lesson 6.\"}, {\"name\": \"Cosine similarity\", \"label\": \"Helpful\", \"evidence\": \"L3 doan 18:40: embedding la cach bien mot doan text thanh mot vector so, sao cho hai cau gan nghia thi vector gan nhau. Do bang cosine similarity.\", \"source\": \"L3\", \"review\": \"Biet cosine similarity de hieu cach so sanh vector.\"}, {\"name\": \"Reranking\", \"label\": \"Taught-in-lesson\", \"evidence\": \"L6 [09:00] Reranking duoc day ky trong bai (cross-encoder cham tung cap query-document).\", \"source\": \"L6\", \"review\": \"Reranking se duoc day trong Lesson 6, khong phai prerequisite.\"}], \"questions\": [{\"prereq\": \"Embedding\", \"stem\": \"Embedding duoc hieu nhu the nao trong ngu canh RAG?\", \"options\": [\"A. Bien mot doan text thanh mot vector so sao cho hai cau gan nghia thi vector gan nhau\", \"B. Bien mot doan text thanh mot so nguyen duy nhat de danh index\", \"C. Bien mot doan text thanh mot cay cu phap de phan tich ngu nghia\"], \"answer\": \"A\", \"source\": \"L3\"}, {\"prereq\": \"Chunking\", \"stem\": \"Cau hinh chunk nao duoc Lesson 6 gia dinh san?\", \"options\": [\"A. 500 tokens, overlap 50 tokens\", \"B. 1000 tokens, overlap 100 tokens\", \"C. 200 tokens, overlap 0 tokens\"], \"answer\": \"A\", \"source\": \"L6\"}, {\"prereq\": \"Reranking\", \"stem\": \"Reranking duoc mo ta dung nhat trong Lesson 6 la gi?\", \"options\": [\"A. Dung cross-encoder cham tung cap query-document de xep lai ket qua\", \"B. Thay the hoan toan retriever bang mot mo hinh sinh\", \"C. Loc nhanh top-50 truoc khi retrieve\"], \"answer\": \"A\", \"source\": \"L6\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Embedding",
+    "label": "Required",
+    "evidence": "L6 [02:10] Bai dung embedding de giang dense retrieval ma KHONG dinh nghia lai embedding.",
+    "source": "L6",
+    "review": "On lai khai niem embedding truoc khi hoc Lesson 6."
+   },
+   {
+    "name": "Chunking",
+    "label": "Required",
+    "evidence": "L6 [Slide 6] Bai gia dinh chunk 500 tokens, overlap 50 ma khong giang lai chunking.",
+    "source": "L6",
+    "review": "Nam chunk 500 tokens, overlap 50 truoc khi hoc Lesson 6."
+   },
+   {
+    "name": "Cosine similarity",
+    "label": "Helpful",
+    "evidence": "L3 doan 18:40: embedding la cach bien mot doan text thanh mot vector so, sao cho hai cau gan nghia thi vector gan nhau. Do bang cosine similarity.",
+    "source": "L3",
+    "review": "Biet cosine similarity de hieu cach so sanh vector."
+   },
+   {
+    "name": "Reranking",
+    "label": "Taught-in-lesson",
+    "evidence": "L6 [09:00] Reranking duoc day ky trong bai (cross-encoder cham tung cap query-document).",
+    "source": "L6",
+    "review": "Reranking se duoc day trong Lesson 6, khong phai prerequisite."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Embedding",
+    "stem": "Embedding duoc hieu nhu the nao trong ngu canh RAG?",
+    "options": [
+     "A. Bien mot doan text thanh mot vector so sao cho hai cau gan nghia thi vector gan nhau",
+     "B. Bien mot doan text thanh mot so nguyen duy nhat de danh index",
+     "C. Bien mot doan text thanh mot cay cu phap de phan tich ngu nghia"
+    ],
+    "answer": "A",
+    "source": "L3"
+   },
+   {
+    "prereq": "Chunking",
+    "stem": "Cau hinh chunk nao duoc Lesson 6 gia dinh san?",
+    "options": [
+     "A. 500 tokens, overlap 50 tokens",
+     "B. 1000 tokens, overlap 100 tokens",
+     "C. 200 tokens, overlap 0 tokens"
+    ],
+    "answer": "A",
+    "source": "L6"
+   },
+   {
+    "prereq": "Reranking",
+    "stem": "Reranking duoc mo ta dung nhat trong Lesson 6 la gi?",
+    "options": [
+     "A. Dung cross-encoder cham tung cap query-document de xep lai ket qua",
+     "B. Thay the hoan toan retriever bang mot mo hinh sinh",
+     "C. Loc nhanh top-50 truoc khi retrieve"
+    ],
+    "answer": "A",
+    "source": "L6"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "KHONG — Taught-in-lesson (day ky tu 09:00), khong ep hoc truoc",
+ "hard_test": "HT1"
+}

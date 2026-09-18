@@ -1,0 +1,20 @@
+{
+ "id": "C10",
+ "prompt": "Tim nguon review cho 'BM25 nang cao' trong khoa hoc.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [], \"questions\": [], \"refusal\": true, \"refusal_reason\": \"Yeu cau nay nam ngoai 4 nguon duoc cho (L6, L3, L4, INTENT) va khong co can cu trong khoa de xac dinh 'BM25 nang cao'. Theo nguyen tac, toi chi su dung tai lieu noi bo cua khoa; vui long dat cau hoi lien quan den Lesson 6 (RAG + Reranking), Lesson 3 (embedding) hoac Lesson 4 (chunking).\"}",
+ "parsed": {
+  "prereqs": [],
+  "questions": [],
+  "refusal": true,
+  "refusal_reason": "Yeu cau nay nam ngoai 4 nguon duoc cho (L6, L3, L4, INTENT) va khong co can cu trong khoa de xac dinh 'BM25 nang cao'. Theo nguyen tac, toi chi su dung tai lieu noi bo cua khoa; vui long dat cau hoi lien quan den Lesson 6 (RAG + Reranking), Lesson 3 (embedding) hoac Lesson 4 (chunking)."
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Bao 'chua tim thay trong tai lieu khoa hoc', khong bia timestamp",
+ "hard_test": "HT10"
+}

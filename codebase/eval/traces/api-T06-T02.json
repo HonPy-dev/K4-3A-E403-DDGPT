@@ -1,0 +1,112 @@
+{
+ "id": "T02",
+ "prompt": "Liet ke evidence cu the (ma doan [Txx-NNN]/[slide]) cho tung prerequisite cua buoi transformer.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Kiến trúc Transformer và cơ chế attention\", \"label\": \"Required\", \"evidence\": \"Transformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó. [slide D1/8]\", \"source\": \"SLIDE\", \"review\": \"Cần nắm Transformer là kiến trúc nền tảng dùng cơ chế attention để mỗi token nhìn sang các token quan trọng khác, thay vì xử lý tuần tự.\"}, {\"name\": \"Token và cách model xử lý văn bản\", \"label\": \"Required\", \"evidence\": \"Model không nhìn từ nguyên vẹn. Nó cắt văn bản thành các mảnh nhỏ gọi là token: có từ là một mảnh, có từ vỡ ba bốn mảnh, cả dấu câu và khoảng trắng cũng là mảnh. Ví dụ: \\\"Hello world\\\" ≈ 2 token, nhưng \\\"Xin chào\\\" có thể tới 3–4 token. [slide D1/13]\", \"source\": \"SLIDE\", \"review\": \"Cần hiểu model không đọc từ hay ký tự mà đọc token; tiếng Việt tốn token hơn tiếng Anh.\"}, {\"name\": \"Cơ chế dự đoán next token và vòng lặp sinh văn bản\", \"label\": \"Required\", \"evidence\": \"Mỗi token mới được nối vào ngữ cảnh, rồi model chạy lại từ đầu — vòng lặp predict → append → rerun [slide D1/12]\", \"source\": \"SLIDE\", \"review\": \"Cần nắm LLM sinh văn bản bằng cách đoán token tiếp theo rồi nối vào ngữ cảnh và chạy lại.\"}, {\"name\": \"Self-attention và công thức Q–K–V\", \"label\": \"Taught-in-lesson\", \"evidence\": \"Cái cơ chế self-attention ở đây, hiểu một cách thân thiện: cứ một từ — đơn giản hóa gọi một từ là một token — thì làm sao mỗi từ đấy chúng ta biểu diễn nó trong không gian toán học để tự cái từ đấy nhìn được những từ khác. Sau khi nó tự nhìn được và tự đánh giá được mức độ similarity score — mức độ tương đồng — thì sau đó nó mới đoán được \\\"nó\\\" ở đây chính là con mèo. Thế thì nó có công thức Q, K, V với hàm softmax [T06-130]\", \"source\": \"T06\", \"review\": \"Sẽ được giảng trong bài qua ví dụ \\\"con mèo ngồi trên bàn\\\" và công thức Q–K–V.\"}, {\"name\": \"Multi-head attention\", \"label\": \"Taught-in-lesson\", \"evidence\": \"Thứ hai là multi-head attention: sẽ có nhiều góc nhìn song song. [T06-086]\", \"source\": \"T06\", \"review\": \"Sẽ được giảng trong bài như một kỹ thuật mở rộng của attention với nhiều góc nhìn song song.\"}], \"questions\": [{\"prereq\": \"Kiến trúc Transformer và cơ chế attention\", \"stem\": \"Theo slide Day 1, Transformer là bước ngoặt vì lý do chính nào?\", \"options\": [\"A. Nó cho mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu thay vì chỉ đi tuần tự từng bước\", \"B. Nó là mô hình đầu tiên đọc được ký tự trái sang phải\", \"C. Nó loại bỏ hoàn toàn nhu cầu huấn luyện trên dữ liệu lớn\"], \"answer\": \"A\", \"source\": \"SLIDE\"}, {\"prereq\": \"Token và cách model xử lý văn bản\", \"stem\": \"Theo slide Day 1, model xử lý văn bản như thế nào?\", \"options\": [\"A. Model đọc từng ký tự một theo thứ tự\", \"B. Model cắt văn bản thành các mảnh nhỏ gọi là token, có từ là một mảnh, có từ vỡ nhiều mảnh\", \"C. Model chỉ đọc các từ nguyên vẹn, bỏ qua dấu câu và khoảng trắng\"], \"answer\": \"B\", \"source\": \"SLIDE\"}, {\"prereq\": \"Cơ chế dự đoán next token và vòng lặp sinh văn bản\", \"stem\": \"Theo slide Day 1, vòng lặp sinh văn bản của model diễn ra theo trình tự nào?\", \"options\": [\"A. Append → predict → rerun\", \"B. Rerun → append → predict\", \"C. Predict → append → rerun\"], \"answer\": \"C\", \"source\": \"SLIDE\"}, {\"prereq\": \"Self-attention và công thức Q–K–V\", \"stem\": \"Theo nội dung bài giảng, trong công thức self-attention, chữ Q đại diện cho gì?\", \"options\": [\"A. Query — cái truy vấn mà các bạn gửi vào\", \"B. Key — cái nhãn\", \"C. Value — nội dung bên trong\"], \"answer\": \"A\", \"source\": \"T06\"}, {\"prereq\": \"Multi-head attention\", \"stem\": \"Theo nội dung bài giảng, multi-head attention có đặc điểm gì?\", \"options\": [\"A. Chỉ dùng một con mắt để nhìn toàn bộ văn bản\", \"B. Sinh ra nhiều con mắt cùng nhìn để nắm nhiều đặc trưng khác nhau\", \"C. Thay thế hoàn toàn feed-forward trong Transformer\"], \"answer\": \"B\", \"source\": \"T06\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Kiến trúc Transformer và cơ chế attention",
+    "label": "Required",
+    "evidence": "Transformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó. [slide D1/8]",
+    "source": "SLIDE",
+    "review": "Cần nắm Transformer là kiến trúc nền tảng dùng cơ chế attention để mỗi token nhìn sang các token quan trọng khác, thay vì xử lý tuần tự."
+   },
+   {
+    "name": "Token và cách model xử lý văn bản",
+    "label": "Required",
+    "evidence": "Model không nhìn từ nguyên vẹn. Nó cắt văn bản thành các mảnh nhỏ gọi là token: có từ là một mảnh, có từ vỡ ba bốn mảnh, cả dấu câu và khoảng trắng cũng là mảnh. Ví dụ: \"Hello world\" ≈ 2 token, nhưng \"Xin chào\" có thể tới 3–4 token. [slide D1/13]",
+    "source": "SLIDE",
+    "review": "Cần hiểu model không đọc từ hay ký tự mà đọc token; tiếng Việt tốn token hơn tiếng Anh."
+   },
+   {
+    "name": "Cơ chế dự đoán next token và vòng lặp sinh văn bản",
+    "label": "Required",
+    "evidence": "Mỗi token mới được nối vào ngữ cảnh, rồi model chạy lại từ đầu — vòng lặp predict → append → rerun [slide D1/12]",
+    "source": "SLIDE",
+    "review": "Cần nắm LLM sinh văn bản bằng cách đoán token tiếp theo rồi nối vào ngữ cảnh và chạy lại."
+   },
+   {
+    "name": "Self-attention và công thức Q–K–V",
+    "label": "Taught-in-lesson",
+    "evidence": "Cái cơ chế self-attention ở đây, hiểu một cách thân thiện: cứ một từ — đơn giản hóa gọi một từ là một token — thì làm sao mỗi từ đấy chúng ta biểu diễn nó trong không gian toán học để tự cái từ đấy nhìn được những từ khác. Sau khi nó tự nhìn được và tự đánh giá được mức độ similarity score — mức độ tương đồng — thì sau đó nó mới đoán được \"nó\" ở đây chính là con mèo. Thế thì nó có công thức Q, K, V với hàm softmax [T06-130]",
+    "source": "T06",
+    "review": "Sẽ được giảng trong bài qua ví dụ \"con mèo ngồi trên bàn\" và công thức Q–K–V."
+   },
+   {
+    "name": "Multi-head attention",
+    "label": "Taught-in-lesson",
+    "evidence": "Thứ hai là multi-head attention: sẽ có nhiều góc nhìn song song. [T06-086]",
+    "source": "T06",
+    "review": "Sẽ được giảng trong bài như một kỹ thuật mở rộng của attention với nhiều góc nhìn song song."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Kiến trúc Transformer và cơ chế attention",
+    "stem": "Theo slide Day 1, Transformer là bước ngoặt vì lý do chính nào?",
+    "options": [
+     "A. Nó cho mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu thay vì chỉ đi tuần tự từng bước",
+     "B. Nó là mô hình đầu tiên đọc được ký tự trái sang phải",
+     "C. Nó loại bỏ hoàn toàn nhu cầu huấn luyện trên dữ liệu lớn"
+    ],
+    "answer": "A",
+    "source": "SLIDE"
+   },
+   {
+    "prereq": "Token và cách model xử lý văn bản",
+    "stem": "Theo slide Day 1, model xử lý văn bản như thế nào?",
+    "options": [
+     "A. Model đọc từng ký tự một theo thứ tự",
+     "B. Model cắt văn bản thành các mảnh nhỏ gọi là token, có từ là một mảnh, có từ vỡ nhiều mảnh",
+     "C. Model chỉ đọc các từ nguyên vẹn, bỏ qua dấu câu và khoảng trắng"
+    ],
+    "answer": "B",
+    "source": "SLIDE"
+   },
+   {
+    "prereq": "Cơ chế dự đoán next token và vòng lặp sinh văn bản",
+    "stem": "Theo slide Day 1, vòng lặp sinh văn bản của model diễn ra theo trình tự nào?",
+    "options": [
+     "A. Append → predict → rerun",
+     "B. Rerun → append → predict",
+     "C. Predict → append → rerun"
+    ],
+    "answer": "C",
+    "source": "SLIDE"
+   },
+   {
+    "prereq": "Self-attention và công thức Q–K–V",
+    "stem": "Theo nội dung bài giảng, trong công thức self-attention, chữ Q đại diện cho gì?",
+    "options": [
+     "A. Query — cái truy vấn mà các bạn gửi vào",
+     "B. Key — cái nhãn",
+     "C. Value — nội dung bên trong"
+    ],
+    "answer": "A",
+    "source": "T06"
+   },
+   {
+    "prereq": "Multi-head attention",
+    "stem": "Theo nội dung bài giảng, multi-head attention có đặc điểm gì?",
+    "options": [
+     "A. Chỉ dùng một con mắt để nhìn toàn bộ văn bản",
+     "B. Sinh ra nhiều con mắt cùng nhìn để nắm nhiều đặc trưng khác nhau",
+     "C. Thay thế hoàn toàn feed-forward trong Transformer"
+    ],
+    "answer": "B",
+    "source": "T06"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Moi prereq co ma that ton tai trong context",
+ "hard_test": "HT9"
+}

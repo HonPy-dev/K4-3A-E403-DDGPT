@@ -14,23 +14,23 @@ Trạng thái CP4: **chốt phạm vi và quality bar ngày 17/09/2026**
 
 **Problem statement:** Học viên chưa biết lesson giả định kiến thức nền nào, khái niệm nào sẽ được dạy ngay trong bài, và nên xem lại đúng đoạn nào khi thiếu kiến thức.
 
-**Evidence A — khảo sát 25 học viên:** 18/25 người (72%) xác nhận từng gặp pain thiếu kiến thức nền khi bắt đầu hoặc đang theo một buổi học. Nhóm bị ảnh hưởng báo cáo tình trạng xảy ra thường xuyên ở mỗi buổi và mất từ 30 phút trở lên cho mỗi lần tự tra cứu/ôn lại. Ở cận dưới, tác động tương đương ít nhất `18 × 30 = 540 phút`, tức **9 person-hours cho mỗi buổi học** trong nhóm người xác nhận pain. Tổng hợp tại `evidence/survey-summary.md`.
+**Evidence A — Google Form, 25 phản hồi:** 18/25 người (72%) xác nhận ít nhất một lần đang học mới nhận ra chưa hiểu concept cần để theo tiếp; 18/25 người (72%) báo mất trên 20 phút. 24/25 đã học VLearn trong 14 ngày gần nhất. 11 người đồng ý test và 10 người có thể test nếu phù hợp lịch. Nguồn và cách lọc được ghi tại `evidence/survey-summary.md`; dữ liệu ẩn danh nằm tại `evidence/survey-responses.csv`.
 
-**Evidence B — mời 2 người ngoài nhóm dùng thử:**. Phạm vi đã kiểm: Lesson 6 target, Lesson 3, Lesson 4 và Instructor Intent. Mining xác nhận hai dependency không được định nghĩa lại trong Lesson 6 (embedding, chunking), một concept được dạy trong lesson (reranking), một dependency có hậu quả rõ và một misconception do giảng viên nêu.
+**Evidence B — content mining:** log tại `evidence/mining-log.md`. Phạm vi đã kiểm: Lesson 6 target, Lesson 3, Lesson 4 và Instructor Intent. Mining xác nhận hai dependency không được định nghĩa lại trong Lesson 6 (embedding, chunking), một concept được dạy trong lesson (reranking), một dependency có hậu quả rõ và một misconception do giảng viên nêu.
 
 **Kết luận evidence:** kết quả khảo sát cho thấy pain có độ phủ đáng kể; content mining cho thấy hệ thống có đủ dữ liệu Tier-1 để can thiệp bằng một lát cắt nhỏ, kiểm chứng được.
 
 ## §2. Impact & quyết định chọn
 
-| Ý tưởng | Job phục vụ | Tín hiệu từ mining | Tần suất / chi phí với user | Khả thi trong hackathon | Quyết định |
+| Ứng viên | Job phục vụ | Tín hiệu từ mining | Tần suất / chi phí với user | Khả thi trong hackathon | Quyết định |
 |---|---|---|---|---|---|
 | Lesson Preview | Biết lesson sắp học gì | 3 outcomes của L6 có sẵn | Pain chung: 18/25; chưa tách riêng nhu cầu preview | Cao, nhưng gần summarization | Loại: chưa xử lý dependency/routing |
-| Prerequisite Prep | Biết cần chuẩn bị gì và xem ở đâu | 2 prerequisite không được dạy lại; 2 nguồn review rõ | Trực tiếp xử lý ≥30 phút tự tra cứu/lần của nhóm pain | Cao: nguồn Tier-1, classification, route | **Chọn** |
+| Prerequisite Prep | Biết cần chuẩn bị gì và xem ở đâu | 2 prerequisite không được dạy lại; 2 nguồn review rõ | 18/25 gặp gap; 18/25 báo mất trên 20 phút | Cao: nguồn Tier-1, classification, route | **Chọn** |
 | Readiness Check cá nhân hóa | Biết bản thân đã đủ nền chưa | Có 3 câu quiz map với prerequisite | Có thể phát hiện gap, nhưng chi phí sai cao hơn | Trung bình: cần calibration theo người học | Không chọn làm AI decision chính; chỉ là lớp UI sau Prep |
 
-**Ý tưởng chọn:** Prerequisite Prep. AI quyết định concept là `Required`, `Helpful` hay `Taught-in-lesson`, chỉ route khi có nguồn trong khóa.
+**Ứng viên chọn:** Prerequisite Prep. AI quyết định concept là `Required`, `Helpful` hay `Taught-in-lesson`, chỉ route khi có nguồn trong khóa.
 
-**Tính toán impact cận dưới:** 72% người khảo sát xác nhận pain; với tối thiểu 30 phút/lần và tần suất mỗi buổi, nhóm có thể giảm một phần của ít nhất 9 person-hours/buổi trong mẫu khảo sát nếu route đúng nguồn ngay trước lesson. Đây là cận dưới từ số liệu tự báo cáo, chưa phải causal impact của prototype.
+**Impact quan sát:** 72% người khảo sát xác nhận gap và 72% báo mất trên 20 phút. Hai tỷ lệ cho thấy pain có cả độ phủ và chi phí thời gian đáng kể; chưa thể nhân hai chỉ số thành person-hours vì Form không thu số phút chính xác và chưa chứng minh hai nhóm trùng hoàn toàn.
 
 ## §3. Giải pháp tương tự đã nghiên cứu
 
@@ -126,7 +126,7 @@ Trạng thái CP4: **chốt phạm vi và quality bar ngày 17/09/2026**
 | Code / UI | Phạm Thành Trung — 2A202602949 | Hoàn thiện UI, kiểm tra Prep → Quiz → Review → Lesson |
 | Evaluation / demo | Từ Hoàng Giang — 2A202602363 | Chấm case khó, tổng hợp F/C/R và quay video dự phòng |
 
-**Willing users:** chọn ít nhất 2 người trong mẫu khảo sát đồng ý thử prototype trước CP5; lưu mã ẩn danh, feedback nguyên văn và changelog tại `validation/`.
+**Willing users:** Form có 11 người chọn `Có` và 10 người chọn `Có thể nếu phù hợp lịch`. Trước CP5, tuyển ít nhất 2 người trong nhóm này, xin consent riêng, rồi lưu mã ẩn danh, feedback nguyên văn và changelog tại `validation/`.
 
 **Kế hoạch LEC 6 / LAB 6:**
 
@@ -146,6 +146,8 @@ Trạng thái CP4: **chốt phạm vi và quality bar ngày 17/09/2026**
 
 ## Tự khai phần chưa hoàn thành tại CP4
 
-1. Log competitive research đã hoàn tất ở mức desk research; chưa claim phiên dùng thử Khanmigo có đăng nhập.
-2. Lượt live đã hoàn tất 20 case; bốn case C03/C11/C13/C21 chưa đạt strict và đã có failure analysis.
-3. C18 đã được xác nhận pass ở lượt live; giữ trace fail cũ và trace pass mới làm bằng chứng before/after.
+1. `evidence/survey-responses.csv` đã đồng bộ 25 phản hồi đang hoạt động từ Google Form; Form không thu quote hoặc consent nên hai loại bằng chứng này vẫn chưa có.
+2. Log competitive research đã hoàn tất ở mức desk research; chưa claim phiên dùng thử Khanmigo có đăng nhập.
+3. Lượt live đã hoàn tất 20 case; bốn case C03/C11/C13/C21 chưa đạt strict và đã có failure analysis.
+4. `validation/feedback-log.csv` đã chuẩn bị hai slot; cần hai người ngoài nhóm thực sự test và consent.
+5. C18 đã được xác nhận pass ở lượt live; giữ trace fail cũ và trace pass mới làm bằng chứng before/after.

@@ -1,0 +1,76 @@
+{
+ "id": "T08",
+ "prompt": "Hoc vien thieu kien thuc token. Route 1 nguon review tot nhat.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Token\", \"label\": \"Required\", \"evidence\": \"Model không nhìn từ nguyên vẹn. Nó cắt văn bản thành các mảnh nhỏ gọi là token: có từ là một mảnh, có từ vỡ ba bốn mảnh, cả dấu câu và khoảng trắng cũng là mảnh. [slide D1/13]\", \"source\": \"SLIDE\", \"review\": \"Nắm đơn vị cơ bản model đọc là token, không phải ký tự hay từ; tiếng Việt/code/JSON tốn token hơn tiếng Anh.\"}, {\"name\": \"Cơ chế dự đoán next token\", \"label\": \"Required\", \"evidence\": \"Sinh văn bản = đoán → nối vào câu → đoán tiếp. Mỗi token mới được nối vào ngữ cảnh, rồi model chạy lại từ đầu — vòng lặp predict → append → rerun [slide D1/12]\", \"source\": \"SLIDE\", \"review\": \"Hiểu LLM sinh văn bản bằng vòng lặp dự đoán token kế tiếp rồi nối vào ngữ cảnh và chạy lại.\"}, {\"name\": \"Attention\", \"label\": \"Required\", \"evidence\": \"Thay vì đọc tuần tự từng chữ, cơ chế attention cho phép mỗi token: Chủ động “quay đầu” nhìn lại các token trước đó trong câu; Chấm điểm mức độ liên quan của từng token đối với nghĩa của mình; Khóa nghĩa theo ngữ cảnh [slide D1/15]\", \"source\": \"SLIDE\", \"review\": \"Hiểu attention cho phép mỗi token nhìn sang các token quan trọng khác để khóa nghĩa theo ngữ cảnh.\"}], \"questions\": [{\"prereq\": \"Token\", \"stem\": \"Theo slide, model xử lý văn bản bằng đơn vị nào?\", \"options\": [\"A. Từng ký tự\", \"B. Từng token\", \"C. Từng câu\"], \"answer\": \"B\", \"source\": \"SLIDE\"}, {\"prereq\": \"Cơ chế dự đoán next token\", \"stem\": \"Vòng lặp sinh văn bản của LLM được mô tả đúng nhất là gì?\", \"options\": [\"A. predict → append → rerun\", \"B. encode → decode → stop\", \"C. search → copy → paste\"], \"answer\": \"A\", \"source\": \"SLIDE\"}, {\"prereq\": \"Attention\", \"stem\": \"Cơ chế attention cho phép mỗi token làm gì?\", \"options\": [\"A. Chỉ đọc token ngay trước nó\", \"B. Nhìn sang các token quan trọng khác trong câu\", \"C. Bỏ qua toàn bộ ngữ cảnh\"], \"answer\": \"B\", \"source\": \"SLIDE\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Token",
+    "label": "Required",
+    "evidence": "Model không nhìn từ nguyên vẹn. Nó cắt văn bản thành các mảnh nhỏ gọi là token: có từ là một mảnh, có từ vỡ ba bốn mảnh, cả dấu câu và khoảng trắng cũng là mảnh. [slide D1/13]",
+    "source": "SLIDE",
+    "review": "Nắm đơn vị cơ bản model đọc là token, không phải ký tự hay từ; tiếng Việt/code/JSON tốn token hơn tiếng Anh."
+   },
+   {
+    "name": "Cơ chế dự đoán next token",
+    "label": "Required",
+    "evidence": "Sinh văn bản = đoán → nối vào câu → đoán tiếp. Mỗi token mới được nối vào ngữ cảnh, rồi model chạy lại từ đầu — vòng lặp predict → append → rerun [slide D1/12]",
+    "source": "SLIDE",
+    "review": "Hiểu LLM sinh văn bản bằng vòng lặp dự đoán token kế tiếp rồi nối vào ngữ cảnh và chạy lại."
+   },
+   {
+    "name": "Attention",
+    "label": "Required",
+    "evidence": "Thay vì đọc tuần tự từng chữ, cơ chế attention cho phép mỗi token: Chủ động “quay đầu” nhìn lại các token trước đó trong câu; Chấm điểm mức độ liên quan của từng token đối với nghĩa của mình; Khóa nghĩa theo ngữ cảnh [slide D1/15]",
+    "source": "SLIDE",
+    "review": "Hiểu attention cho phép mỗi token nhìn sang các token quan trọng khác để khóa nghĩa theo ngữ cảnh."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Token",
+    "stem": "Theo slide, model xử lý văn bản bằng đơn vị nào?",
+    "options": [
+     "A. Từng ký tự",
+     "B. Từng token",
+     "C. Từng câu"
+    ],
+    "answer": "B",
+    "source": "SLIDE"
+   },
+   {
+    "prereq": "Cơ chế dự đoán next token",
+    "stem": "Vòng lặp sinh văn bản của LLM được mô tả đúng nhất là gì?",
+    "options": [
+     "A. predict → append → rerun",
+     "B. encode → decode → stop",
+     "C. search → copy → paste"
+    ],
+    "answer": "A",
+    "source": "SLIDE"
+   },
+   {
+    "prereq": "Attention",
+    "stem": "Cơ chế attention cho phép mỗi token làm gì?",
+    "options": [
+     "A. Chỉ đọc token ngay trước nó",
+     "B. Nhìn sang các token quan trọng khác trong câu",
+     "C. Bỏ qua toàn bộ ngữ cảnh"
+    ],
+    "answer": "B",
+    "source": "SLIDE"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "T04 token / slide token (1 nguon, khong do link)",
+ "hard_test": "HT8-HT9"
+}

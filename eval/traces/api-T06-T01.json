@@ -1,0 +1,80 @@
+{
+ "id": "T01",
+ "prompt": "Xac dinh toi da 3 prerequisite BAT BUOC (Required) de theo duoc buoi transformer & attention (nguon TARGET). Voi moi prerequisite: neu ro Required / Helpful / Taught-in-lesson, kem evidence TRICH NGUYEN VAN NGAN + ma doan [Txx-NNN]/[slide]. Chi dung T06/T04/SLIDE. Thieu can cu -> loai.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Khái niệm cơ bản về encode và decode\", \"label\": \"Required\", \"evidence\": \"Cho mình hỏi ở đây có bạn nào giải thích được encode và decode như nào không? ... Mã hóa tức là một dữ liệu đầu vào sẽ được mã hóa thành một dạng dữ liệu đơn giản hơn. Từ cái dữ liệu đơn giản này nó sẽ được giải mã\", \"source\": \"T06-075\", \"review\": \"Cần nắm encode/decode trước khi vào LLM và transformer.\"}, {\"name\": \"Kiến thức cơ bản về vectơ và biểu diễn trong không gian toán học\", \"label\": \"Required\", \"evidence\": \"mỗi token sẽ được chuyển thành cái quan trọng nhất nhá: các vectơ. Tại vì vectơ thì mới tính được — giống như chúng ta biểu diễn các công thức toán học, ma trận vân vân, thì nó mới tính được\", \"source\": \"T06-127\", \"review\": \"Cần hiểu vectơ/ma trận để theo dõi embedding và attention.\"}, {\"name\": \"Khái niệm token\", \"label\": \"Required\", \"evidence\": \"Đơn vị cơ bản của LLM là cái nãy giờ chúng ta gọi là token. ... Cái LLM nó không đọc ký tự các bạn nhá. ... mà nó đọc token\", \"source\": \"T06-134\", \"review\": \"Cần biết token là gì trước khi học cơ chế dự đoán next token.\"}], \"questions\": [{\"prereq\": \"Khái niệm cơ bản về encode và decode\", \"stem\": \"Theo bài giảng, encode và decode trong mô hình ngôn ngữ lớn được hiểu cơ bản là gì?\", \"options\": [\"Encode là mã hóa dữ liệu đầu vào thành dạng đơn giản hơn, decode là giải mã để tạo ra kết quả như từ tiếp theo\", \"Encode là giải mã dữ liệu, decode là mã hóa dữ liệu\", \"Encode và decode là hai tên gọi khác nhau của cùng một quá trình\"], \"answer\": \"A\", \"source\": \"T06-076\"}, {\"prereq\": \"Kiến thức cơ bản về vectơ và biểu diễn trong không gian toán học\", \"stem\": \"Trong bước embedding của Transformer, mỗi token được chuyển thành gì để có thể tính toán?\", \"options\": [\"Một vectơ trong không gian toán học\", \"Một ký tự văn bản\", \"Một con số xác suất duy nhất\"], \"answer\": \"A\", \"source\": \"T06-127\"}, {\"prereq\": \"Khái niệm token\", \"stem\": \"Theo bài giảng, LLM đọc văn bản như thế nào?\", \"options\": [\"Đọc từng ký tự từ trái sang phải\", \"Đọc token, không đọc ký tự hay từ nguyên vẹn\", \"Đọc từng từ nguyên vẹn theo thứ tự\"], \"answer\": \"B\", \"source\": \"T06-135\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Khái niệm cơ bản về encode và decode",
+    "label": "Required",
+    "evidence": "Cho mình hỏi ở đây có bạn nào giải thích được encode và decode như nào không? ... Mã hóa tức là một dữ liệu đầu vào sẽ được mã hóa thành một dạng dữ liệu đơn giản hơn. Từ cái dữ liệu đơn giản này nó sẽ được giải mã",
+    "source": "T06-075",
+    "review": "Cần nắm encode/decode trước khi vào LLM và transformer."
+   },
+   {
+    "name": "Kiến thức cơ bản về vectơ và biểu diễn trong không gian toán học",
+    "label": "Required",
+    "evidence": "mỗi token sẽ được chuyển thành cái quan trọng nhất nhá: các vectơ. Tại vì vectơ thì mới tính được — giống như chúng ta biểu diễn các công thức toán học, ma trận vân vân, thì nó mới tính được",
+    "source": "T06-127",
+    "review": "Cần hiểu vectơ/ma trận để theo dõi embedding và attention."
+   },
+   {
+    "name": "Khái niệm token",
+    "label": "Required",
+    "evidence": "Đơn vị cơ bản của LLM là cái nãy giờ chúng ta gọi là token. ... Cái LLM nó không đọc ký tự các bạn nhá. ... mà nó đọc token",
+    "source": "T06-134",
+    "review": "Cần biết token là gì trước khi học cơ chế dự đoán next token."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Khái niệm cơ bản về encode và decode",
+    "stem": "Theo bài giảng, encode và decode trong mô hình ngôn ngữ lớn được hiểu cơ bản là gì?",
+    "options": [
+     "Encode là mã hóa dữ liệu đầu vào thành dạng đơn giản hơn, decode là giải mã để tạo ra kết quả như từ tiếp theo",
+     "Encode là giải mã dữ liệu, decode là mã hóa dữ liệu",
+     "Encode và decode là hai tên gọi khác nhau của cùng một quá trình"
+    ],
+    "answer": "A",
+    "source": "T06-076"
+   },
+   {
+    "prereq": "Kiến thức cơ bản về vectơ và biểu diễn trong không gian toán học",
+    "stem": "Trong bước embedding của Transformer, mỗi token được chuyển thành gì để có thể tính toán?",
+    "options": [
+     "Một vectơ trong không gian toán học",
+     "Một ký tự văn bản",
+     "Một con số xác suất duy nhất"
+    ],
+    "answer": "A",
+    "source": "T06-127"
+   },
+   {
+    "prereq": "Khái niệm token",
+    "stem": "Theo bài giảng, LLM đọc văn bản như thế nào?",
+    "options": [
+     "Đọc từng ký tự từ trái sang phải",
+     "Đọc token, không đọc ký tự hay từ nguyên vẹn",
+     "Đọc từng từ nguyên vẹn theo thứ tự"
+    ],
+    "answer": "B",
+    "source": "T06-135"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": false,
+  "errors": [
+   "evidence 'Khái niệm cơ bản về encode và ' thieu ma doan that",
+   "evidence 'Kiến thức cơ bản về vectơ và b' thieu ma doan that",
+   "evidence 'Khái niệm token' thieu ma doan that"
+  ]
+ },
+ "expected": "Token + Attention-nen Required (trace T04), Self-attention QKV Taught-in-lesson (T06 day + lab)",
+ "hard_test": "HT1-HT3"
+}

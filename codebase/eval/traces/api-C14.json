@@ -1,0 +1,76 @@
+{
+ "id": "C14",
+ "prompt": "Co can dao sau BM25 truoc khi hoc Lesson 6 khong?",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Dense retrieval bang embedding\", \"label\": \"Required\", \"evidence\": \"Bai dung embedding de giang dense retrieval ma KHONG dinh nghia lai embedding.\", \"source\": \"L6\", \"review\": \"On lai cach embedding bien text thanh vector va do bang cosine similarity truoc khi hoc Lesson 6.\"}, {\"name\": \"Chunking co overlap\", \"label\": \"Required\", \"evidence\": \"Bai gia dinh chunk 500 tokens, overlap 50 ma khong giang lai chunking.\", \"source\": \"L6\", \"review\": \"Nam rule chunk 500 tokens, overlap 50 tokens va anh huong cua chunking xau den retrieval.\"}, {\"name\": \"Phan biet retriever vs reranker\", \"label\": \"Taught-in-lesson\", \"evidence\": \"Reranking duoc day ky trong bai (cross-encoder cham tung cap query-document).\", \"source\": \"L6\", \"review\": \"Hoc ky phan biet retriever loc nhanh top-50 va reranker xep lai top-5 trong bai.\"}], \"questions\": [{\"prereq\": \"Dense retrieval bang embedding\", \"stem\": \"Embedding duoc dung de lam gi trong dense retrieval cua pipeline RAG?\", \"options\": [\"Bien mot doan text thanh vector so de so sanh do gan nghia\", \"Dem so lan tu xuat hien trong document\", \"Xep hang lai top-5 document sau khi retrieve\"], \"answer\": \"A\", \"source\": \"L3\"}, {\"prereq\": \"Chunking co overlap\", \"stem\": \"Theo Lesson 4, chunk 500 tokens nen dat overlap bao nhieu de giu mach ngu canh?\", \"options\": [\"0 tokens\", \"50 tokens\", \"500 tokens\"], \"answer\": \"B\", \"source\": \"L4\"}, {\"prereq\": \"Phan biet retriever vs reranker\", \"stem\": \"Trong pipeline RAG cua Lesson 6, reranker cross-encoder lam gi?\", \"options\": [\"Thay the retriever de lay top-50\", \"Cham tung cap query-document va xep lai chon top-5\", \"Bien query thanh vector embedding\"], \"answer\": \"B\", \"source\": \"L6\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Dense retrieval bang embedding",
+    "label": "Required",
+    "evidence": "Bai dung embedding de giang dense retrieval ma KHONG dinh nghia lai embedding.",
+    "source": "L6",
+    "review": "On lai cach embedding bien text thanh vector va do bang cosine similarity truoc khi hoc Lesson 6."
+   },
+   {
+    "name": "Chunking co overlap",
+    "label": "Required",
+    "evidence": "Bai gia dinh chunk 500 tokens, overlap 50 ma khong giang lai chunking.",
+    "source": "L6",
+    "review": "Nam rule chunk 500 tokens, overlap 50 tokens va anh huong cua chunking xau den retrieval."
+   },
+   {
+    "name": "Phan biet retriever vs reranker",
+    "label": "Taught-in-lesson",
+    "evidence": "Reranking duoc day ky trong bai (cross-encoder cham tung cap query-document).",
+    "source": "L6",
+    "review": "Hoc ky phan biet retriever loc nhanh top-50 va reranker xep lai top-5 trong bai."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Dense retrieval bang embedding",
+    "stem": "Embedding duoc dung de lam gi trong dense retrieval cua pipeline RAG?",
+    "options": [
+     "Bien mot doan text thanh vector so de so sanh do gan nghia",
+     "Dem so lan tu xuat hien trong document",
+     "Xep hang lai top-5 document sau khi retrieve"
+    ],
+    "answer": "A",
+    "source": "L3"
+   },
+   {
+    "prereq": "Chunking co overlap",
+    "stem": "Theo Lesson 4, chunk 500 tokens nen dat overlap bao nhieu de giu mach ngu canh?",
+    "options": [
+     "0 tokens",
+     "50 tokens",
+     "500 tokens"
+    ],
+    "answer": "B",
+    "source": "L4"
+   },
+   {
+    "prereq": "Phan biet retriever vs reranker",
+    "stem": "Trong pipeline RAG cua Lesson 6, reranker cross-encoder lam gi?",
+    "options": [
+     "Thay the retriever de lay top-50",
+     "Cham tung cap query-document va xep lai chon top-5",
+     "Bien query thanh vector embedding"
+    ],
+    "answer": "B",
+    "source": "L6"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "KHONG — intent GV noi khong can dao sau, uu tien intent",
+ "hard_test": "HT12"
+}

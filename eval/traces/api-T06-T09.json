@@ -1,0 +1,20 @@
+{
+ "id": "T09",
+ "prompt": "Cho timestamp chinh xac cua doan giang 'softmax temperature' trong khoa.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [], \"questions\": [], \"refusal\": true, \"refusal_reason\": \"Khong the cung cap timestamp chinh xac cho doan giang 'softmax temperature' vi khong co doan nao trong cac nguon duoc cho (T06, T04, SLIDE) duoc danh dau hoac trich dan voi ten doan do. Cac nguon chi de cap den temperature trong [T06-136] va [T04-096] nhung khong co timestamp rieng cho 'softmax temperature'. Vui long tham khao truc tiep cac doan [T06-136] va [T04-096] trong khoa de biet noi dung lien quan.\"}",
+ "parsed": {
+  "prereqs": [],
+  "questions": [],
+  "refusal": true,
+  "refusal_reason": "Khong the cung cap timestamp chinh xac cho doan giang 'softmax temperature' vi khong co doan nao trong cac nguon duoc cho (T06, T04, SLIDE) duoc danh dau hoac trich dan voi ten doan do. Cac nguon chi de cap den temperature trong [T06-136] va [T04-096] nhung khong co timestamp rieng cho 'softmax temperature'. Vui long tham khao truc tiep cac doan [T06-136] va [T04-096] trong khoa de biet noi dung lien quan."
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Bao khong tim thay / khong du can cu, KHONG bia ma [Txx]",
+ "hard_test": "HT10"
+}

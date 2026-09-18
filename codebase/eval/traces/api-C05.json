@@ -1,0 +1,76 @@
+{
+ "id": "C05",
+ "prompt": "De hoc Lesson 6 co can biet truoc 'quantum attention' khong?",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Embedding\", \"label\": \"Required\", \"evidence\": \"Bài dùng embedding để giảng dense retrieval mà KHÔNG định nghĩa lại embedding.\", \"source\": \"L6\", \"review\": \"Cần biết embedding là gì trước khi học dense retrieval trong Lesson 6.\"}, {\"name\": \"Chunking\", \"label\": \"Required\", \"evidence\": \"Bài giả định chunk 500 tokens, overlap 50 mà không giảng lại chunking.\", \"source\": \"L6\", \"review\": \"Cần biết chunking và tham số chunk/overlap trước khi học pipeline RAG.\"}, {\"name\": \"Retriever vs Reranker\", \"label\": \"Taught-in-lesson\", \"evidence\": \"Reranking được dạy kỹ trong bài; sau bài học viên phải phân biệt retriever vs reranker.\", \"source\": \"L6\", \"review\": \"Sẽ được dạy trong Lesson 6, không cần biết trước.\"}], \"questions\": [{\"prereq\": \"Embedding\", \"stem\": \"Embedding được hiểu đúng nhất là gì?\", \"options\": [\"Cách biến một đoạn text thành vector số sao cho hai câu gần nghĩa thì vector gần nhau\", \"Cách nén file PDF thành dung lượng nhỏ hơn\", \"Cách đếm số từ trong một câu\"], \"answer\": \"A\", \"source\": \"L3\"}, {\"prereq\": \"Chunking\", \"stem\": \"Theo Lesson 4, chunk 500 tokens thường đi kèm overlap bao nhiêu để giữ mạch ngữ cảnh?\", \"options\": [\"0 token\", \"50 token\", \"500 token\"], \"answer\": \"B\", \"source\": \"L4\"}, {\"prereq\": \"Retriever vs Reranker\", \"stem\": \"Phát biểu nào đúng về retriever và reranker trong pipeline RAG?\", \"options\": [\"Reranker thay thế được retriever\", \"Retriever lọc nhanh top-50, reranker xếp lại top-5\", \"Retriever chấm từng cặp query-document, reranker lấy top-50\"], \"answer\": \"B\", \"source\": \"INTENT\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Embedding",
+    "label": "Required",
+    "evidence": "Bài dùng embedding để giảng dense retrieval mà KHÔNG định nghĩa lại embedding.",
+    "source": "L6",
+    "review": "Cần biết embedding là gì trước khi học dense retrieval trong Lesson 6."
+   },
+   {
+    "name": "Chunking",
+    "label": "Required",
+    "evidence": "Bài giả định chunk 500 tokens, overlap 50 mà không giảng lại chunking.",
+    "source": "L6",
+    "review": "Cần biết chunking và tham số chunk/overlap trước khi học pipeline RAG."
+   },
+   {
+    "name": "Retriever vs Reranker",
+    "label": "Taught-in-lesson",
+    "evidence": "Reranking được dạy kỹ trong bài; sau bài học viên phải phân biệt retriever vs reranker.",
+    "source": "L6",
+    "review": "Sẽ được dạy trong Lesson 6, không cần biết trước."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Embedding",
+    "stem": "Embedding được hiểu đúng nhất là gì?",
+    "options": [
+     "Cách biến một đoạn text thành vector số sao cho hai câu gần nghĩa thì vector gần nhau",
+     "Cách nén file PDF thành dung lượng nhỏ hơn",
+     "Cách đếm số từ trong một câu"
+    ],
+    "answer": "A",
+    "source": "L3"
+   },
+   {
+    "prereq": "Chunking",
+    "stem": "Theo Lesson 4, chunk 500 tokens thường đi kèm overlap bao nhiêu để giữ mạch ngữ cảnh?",
+    "options": [
+     "0 token",
+     "50 token",
+     "500 token"
+    ],
+    "answer": "B",
+    "source": "L4"
+   },
+   {
+    "prereq": "Retriever vs Reranker",
+    "stem": "Phát biểu nào đúng về retriever và reranker trong pipeline RAG?",
+    "options": [
+     "Reranker thay thế được retriever",
+     "Retriever lọc nhanh top-50, reranker xếp lại top-5",
+     "Retriever chấm từng cặp query-document, reranker lấy top-50"
+    ],
+    "answer": "B",
+    "source": "INTENT"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Loai — khong co can cu trong nguon, khong bia dinh nghia",
+ "hard_test": "HT2"
+}

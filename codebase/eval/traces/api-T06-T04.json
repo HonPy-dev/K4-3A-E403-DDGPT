@@ -1,0 +1,76 @@
+{
+ "id": "T04",
+ "prompt": "Self-attention (Q-K-V) co phai hoc truoc buoi nay khong?",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Kiến trúc Transformer\", \"label\": \"Required\", \"evidence\": \"Transformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó. [slide D1/8]\", \"source\": \"SLIDE\", \"review\": \"Cần biết trước vì self-attention là cơ chế cốt lõi bên trong kiến trúc Transformer.\"}, {\"name\": \"Token\", \"label\": \"Required\", \"evidence\": \"Model không nhìn từ nguyên vẹn. Nó cắt văn bản thành các mảnh nhỏ gọi là token: có từ là một mảnh, có từ vỡ ba bốn mảnh, cả dấu câu và khoảng trắng cũng là mảnh. [slide D1/13]\", \"source\": \"SLIDE\", \"review\": \"Cần biết trước vì self-attention thao tác trên từng token trong câu.\"}, {\"name\": \"Attention\", \"label\": \"Taught-in-lesson\", \"evidence\": \"Thay vì đọc tuần tự từng chữ, cơ chế attention cho phép mỗi token: Chủ động “quay đầu” nhìn lại các token trước đó trong câu; Chấm điểm mức độ liên quan của từng token đối với nghĩa của mình; Khóa nghĩa theo ngữ cảnh — “nó” là quyển sách hay cái túi, tùy theo nó chú ý vào từ nào. [slide D1/15]\", \"source\": \"SLIDE\", \"review\": \"Sẽ được dạy trong bài, không phải kiến thức cần biết trước.\"}], \"questions\": [{\"prereq\": \"Kiến trúc Transformer\", \"stem\": \"Kiến trúc Transformer được giới thiệu lần đầu trong bài báo nào và năm nào?\", \"options\": [\"“Attention Is All You Need” — 2017\", \"“ImageNet Classification with Deep CNNs” — 2012\", \"“BERT: Pre-training of Deep Bidirectional Transformers” — 2018\"], \"answer\": \"A\", \"source\": \"T04\"}, {\"prereq\": \"Token\", \"stem\": \"Theo slide, model xử lý văn bản bằng đơn vị nào?\", \"options\": [\"Từ nguyên vẹn\", \"Token — mảnh chữ nhỏ\", \"Ký tự đơn lẻ\"], \"answer\": \"B\", \"source\": \"SLIDE\"}, {\"prereq\": \"Attention\", \"stem\": \"Cơ chế attention cho phép mỗi token làm gì?\", \"options\": [\"Chỉ đọc token ngay trước nó\", \"Nhìn sang các token quan trọng khác trong câu và chấm điểm liên quan\", \"Bỏ qua toàn bộ ngữ cảnh xung quanh\"], \"answer\": \"B\", \"source\": \"SLIDE\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Kiến trúc Transformer",
+    "label": "Required",
+    "evidence": "Transformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó. [slide D1/8]",
+    "source": "SLIDE",
+    "review": "Cần biết trước vì self-attention là cơ chế cốt lõi bên trong kiến trúc Transformer."
+   },
+   {
+    "name": "Token",
+    "label": "Required",
+    "evidence": "Model không nhìn từ nguyên vẹn. Nó cắt văn bản thành các mảnh nhỏ gọi là token: có từ là một mảnh, có từ vỡ ba bốn mảnh, cả dấu câu và khoảng trắng cũng là mảnh. [slide D1/13]",
+    "source": "SLIDE",
+    "review": "Cần biết trước vì self-attention thao tác trên từng token trong câu."
+   },
+   {
+    "name": "Attention",
+    "label": "Taught-in-lesson",
+    "evidence": "Thay vì đọc tuần tự từng chữ, cơ chế attention cho phép mỗi token: Chủ động “quay đầu” nhìn lại các token trước đó trong câu; Chấm điểm mức độ liên quan của từng token đối với nghĩa của mình; Khóa nghĩa theo ngữ cảnh — “nó” là quyển sách hay cái túi, tùy theo nó chú ý vào từ nào. [slide D1/15]",
+    "source": "SLIDE",
+    "review": "Sẽ được dạy trong bài, không phải kiến thức cần biết trước."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Kiến trúc Transformer",
+    "stem": "Kiến trúc Transformer được giới thiệu lần đầu trong bài báo nào và năm nào?",
+    "options": [
+     "“Attention Is All You Need” — 2017",
+     "“ImageNet Classification with Deep CNNs” — 2012",
+     "“BERT: Pre-training of Deep Bidirectional Transformers” — 2018"
+    ],
+    "answer": "A",
+    "source": "T04"
+   },
+   {
+    "prereq": "Token",
+    "stem": "Theo slide, model xử lý văn bản bằng đơn vị nào?",
+    "options": [
+     "Từ nguyên vẹn",
+     "Token — mảnh chữ nhỏ",
+     "Ký tự đơn lẻ"
+    ],
+    "answer": "B",
+    "source": "SLIDE"
+   },
+   {
+    "prereq": "Attention",
+    "stem": "Cơ chế attention cho phép mỗi token làm gì?",
+    "options": [
+     "Chỉ đọc token ngay trước nó",
+     "Nhìn sang các token quan trọng khác trong câu và chấm điểm liên quan",
+     "Bỏ qua toàn bộ ngữ cảnh xung quanh"
+    ],
+    "answer": "B",
+    "source": "SLIDE"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "KHONG — Taught-in-lesson (T06 day + lab demo truc quan)",
+ "hard_test": "HT1"
+}

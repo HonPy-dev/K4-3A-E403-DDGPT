@@ -1,0 +1,76 @@
+{
+ "id": "C08",
+ "prompt": "Hoc vien thieu Embedding. Route dung 1 nguon review tot nhat.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Embedding\", \"label\": \"Required\", \"evidence\": \"Embedding là cách biến một đoạn text thành một vector số, sao cho hai câu gần nghĩa thì vector gần nhau. Đo bằng cosine similarity.\", \"source\": \"L3\", \"review\": \"Ôn Lesson 3 đoạn 18:40: embedding là biểu diễn text thành vector số, so sánh bằng cosine similarity.\"}, {\"name\": \"Chunking\", \"label\": \"Required\", \"evidence\": \"Bài giả định chunk 500 tokens, overlap 50 mà không giảng lại chunking.\", \"source\": \"L6\", \"review\": \"Ôn Lesson 4 slide 14-17: chunk 500 tokens, overlap 50 tokens; chunking xấu thì retrieval xấu.\"}, {\"name\": \"Dense Retrieval\", \"label\": \"Helpful\", \"evidence\": \"Bài dùng embedding để giảng dense retrieval mà KHÔNG định nghĩa lại embedding.\", \"source\": \"L6\", \"review\": \"Ôn Lesson 6 phần dense retrieval: dùng embedding để retrieve top-50.\"}], \"questions\": [{\"prereq\": \"Embedding\", \"stem\": \"Embedding trong bài học được hiểu là gì?\", \"options\": [\"Cách biến một đoạn text thành vector số sao cho hai câu gần nghĩa thì vector gần nhau\", \"Cách nén file PDF thành dung lượng nhỏ hơn\", \"Cách đếm số từ trong một đoạn văn bản\"], \"answer\": \"A\", \"source\": \"L3\"}, {\"prereq\": \"Chunking\", \"stem\": \"Theo Lesson 4, cấu hình chunk mặc định được dùng là gì?\", \"options\": [\"Chunk 500 tokens, overlap 50 tokens\", \"Chunk 50 tokens, overlap 500 tokens\", \"Chunk 1000 tokens, overlap 0 tokens\"], \"answer\": \"A\", \"source\": \"L4\"}, {\"prereq\": \"Dense Retrieval\", \"stem\": \"Trong pipeline RAG của Lesson 6, retriever lấy ra bao nhiêu kết quả trước khi rerank?\", \"options\": [\"Top-50\", \"Top-5\", \"Top-500\"], \"answer\": \"A\", \"source\": \"L6\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Embedding",
+    "label": "Required",
+    "evidence": "Embedding là cách biến một đoạn text thành một vector số, sao cho hai câu gần nghĩa thì vector gần nhau. Đo bằng cosine similarity.",
+    "source": "L3",
+    "review": "Ôn Lesson 3 đoạn 18:40: embedding là biểu diễn text thành vector số, so sánh bằng cosine similarity."
+   },
+   {
+    "name": "Chunking",
+    "label": "Required",
+    "evidence": "Bài giả định chunk 500 tokens, overlap 50 mà không giảng lại chunking.",
+    "source": "L6",
+    "review": "Ôn Lesson 4 slide 14-17: chunk 500 tokens, overlap 50 tokens; chunking xấu thì retrieval xấu."
+   },
+   {
+    "name": "Dense Retrieval",
+    "label": "Helpful",
+    "evidence": "Bài dùng embedding để giảng dense retrieval mà KHÔNG định nghĩa lại embedding.",
+    "source": "L6",
+    "review": "Ôn Lesson 6 phần dense retrieval: dùng embedding để retrieve top-50."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Embedding",
+    "stem": "Embedding trong bài học được hiểu là gì?",
+    "options": [
+     "Cách biến một đoạn text thành vector số sao cho hai câu gần nghĩa thì vector gần nhau",
+     "Cách nén file PDF thành dung lượng nhỏ hơn",
+     "Cách đếm số từ trong một đoạn văn bản"
+    ],
+    "answer": "A",
+    "source": "L3"
+   },
+   {
+    "prereq": "Chunking",
+    "stem": "Theo Lesson 4, cấu hình chunk mặc định được dùng là gì?",
+    "options": [
+     "Chunk 500 tokens, overlap 50 tokens",
+     "Chunk 50 tokens, overlap 500 tokens",
+     "Chunk 1000 tokens, overlap 0 tokens"
+    ],
+    "answer": "A",
+    "source": "L4"
+   },
+   {
+    "prereq": "Dense Retrieval",
+    "stem": "Trong pipeline RAG của Lesson 6, retriever lấy ra bao nhiêu kết quả trước khi rerank?",
+    "options": [
+     "Top-50",
+     "Top-5",
+     "Top-500"
+    ],
+    "answer": "A",
+    "source": "L6"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "Lesson 3 doan 18:40 (~2'), khong do link dai",
+ "hard_test": "HT8-HT9"
+}

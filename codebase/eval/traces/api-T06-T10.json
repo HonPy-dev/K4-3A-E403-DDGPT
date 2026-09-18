@@ -1,0 +1,76 @@
+{
+ "id": "T10",
+ "prompt": "Hallucination co phai do model co tinh noi doi khong?",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Cơ chế attention trong Transformer\", \"label\": \"Required\", \"evidence\": \"Một trong những nguyên nhân hallucination là nó chạy hết cả đoạn dài trong context window, quên ở giữa, rồi nó sẽ hallucinate — attention sẽ khắc phục được câu chuyện đấy. [T06-085]\", \"source\": \"T06\", \"review\": \"Cần biết attention giúp model chú ý đúng ngữ cảnh, từ đó giảm hallucination.\"}, {\"name\": \"Context window và hiện tượng quên phần giữa\", \"label\": \"Required\", \"evidence\": \"Bàn đầy quá thì đồ ở giữa bàn dễ bị bỏ sót — đặt điều quan trọng ở giữa một prompt rất dài, model có thể 'quên' mất. [slide D1/14]\", \"source\": \"SLIDE\", \"review\": \"Cần biết context có hạn và model dễ bỏ sót thông tin ở giữa, dẫn đến hallucination.\"}, {\"name\": \"LLM dự đoán token kế tiếp theo xác suất\", \"label\": \"Required\", \"evidence\": \"bản chất của LLM là dự đoán — các bạn có thể dùng từ xác suất cũng được. Nó dự đoán từ kế tiếp. [T06-083]\", \"source\": \"T06\", \"review\": \"Cần biết LLM không hiểu ngôn ngữ như con người mà chỉ dự đoán token có xác suất cao nhất.\"}], \"questions\": [{\"prereq\": \"Cơ chế attention trong Transformer\", \"stem\": \"Theo bài giảng, attention giúp ích gì trong việc giảm hallucination?\", \"options\": [\"A. Giúp model chú ý đúng ngữ cảnh và không quên thông tin quan trọng\", \"B. Giúp model tự động xóa các token không liên quan khỏi từ vựng\", \"C. Giúp model tăng tốc độ sinh token mà không cần ngữ cảnh\"], \"answer\": \"A\", \"source\": \"T06\"}, {\"prereq\": \"Context window và hiện tượng quên phần giữa\", \"stem\": \"Vì sao khi prompt rất dài, model có thể bỏ sót thông tin ở giữa?\", \"options\": [\"A. Vì model chỉ đọc được các token ở đầu và cuối\", \"B. Vì context window có hạn và model dễ quên phần giữa\", \"C. Vì model cố tình bỏ qua thông tin ở giữa\"], \"answer\": \"B\", \"source\": \"SLIDE\"}, {\"prereq\": \"LLM dự đoán token kế tiếp theo xác suất\", \"stem\": \"Bản chất của LLM khi sinh văn bản là gì?\", \"options\": [\"A. Tra cứu cơ sở dữ liệu để lấy câu trả lời đúng\", \"B. Dự đoán token kế tiếp dựa trên xác suất\", \"C. Suy luận logic như con người để tìm chân lý\"], \"answer\": \"B\", \"source\": \"T06\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Cơ chế attention trong Transformer",
+    "label": "Required",
+    "evidence": "Một trong những nguyên nhân hallucination là nó chạy hết cả đoạn dài trong context window, quên ở giữa, rồi nó sẽ hallucinate — attention sẽ khắc phục được câu chuyện đấy. [T06-085]",
+    "source": "T06",
+    "review": "Cần biết attention giúp model chú ý đúng ngữ cảnh, từ đó giảm hallucination."
+   },
+   {
+    "name": "Context window và hiện tượng quên phần giữa",
+    "label": "Required",
+    "evidence": "Bàn đầy quá thì đồ ở giữa bàn dễ bị bỏ sót — đặt điều quan trọng ở giữa một prompt rất dài, model có thể 'quên' mất. [slide D1/14]",
+    "source": "SLIDE",
+    "review": "Cần biết context có hạn và model dễ bỏ sót thông tin ở giữa, dẫn đến hallucination."
+   },
+   {
+    "name": "LLM dự đoán token kế tiếp theo xác suất",
+    "label": "Required",
+    "evidence": "bản chất của LLM là dự đoán — các bạn có thể dùng từ xác suất cũng được. Nó dự đoán từ kế tiếp. [T06-083]",
+    "source": "T06",
+    "review": "Cần biết LLM không hiểu ngôn ngữ như con người mà chỉ dự đoán token có xác suất cao nhất."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Cơ chế attention trong Transformer",
+    "stem": "Theo bài giảng, attention giúp ích gì trong việc giảm hallucination?",
+    "options": [
+     "A. Giúp model chú ý đúng ngữ cảnh và không quên thông tin quan trọng",
+     "B. Giúp model tự động xóa các token không liên quan khỏi từ vựng",
+     "C. Giúp model tăng tốc độ sinh token mà không cần ngữ cảnh"
+    ],
+    "answer": "A",
+    "source": "T06"
+   },
+   {
+    "prereq": "Context window và hiện tượng quên phần giữa",
+    "stem": "Vì sao khi prompt rất dài, model có thể bỏ sót thông tin ở giữa?",
+    "options": [
+     "A. Vì model chỉ đọc được các token ở đầu và cuối",
+     "B. Vì context window có hạn và model dễ quên phần giữa",
+     "C. Vì model cố tình bỏ qua thông tin ở giữa"
+    ],
+    "answer": "B",
+    "source": "SLIDE"
+   },
+   {
+    "prereq": "LLM dự đoán token kế tiếp theo xác suất",
+    "stem": "Bản chất của LLM khi sinh văn bản là gì?",
+    "options": [
+     "A. Tra cứu cơ sở dữ liệu để lấy câu trả lời đúng",
+     "B. Dự đoán token kế tiếp dựa trên xác suất",
+     "C. Suy luận logic như con người để tìm chân lý"
+    ],
+    "answer": "B",
+    "source": "T06"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "SAI theo transcript: do bias du lieu + qua trinh huan luyen",
+ "hard_test": "HT-domain4"
+}

@@ -1,0 +1,76 @@
+{
+ "id": "T07",
+ "prompt": "Tao 3 cau trac nghiem cho buoi transformer, moi cau map 1 prerequisite, co dap an + cite ma doan.",
+ "sources_mode": "api-full-context",
+ "provider": "deepseek",
+ "model": "deepseek-chat",
+ "raw_text": "{\"prereqs\": [{\"name\": \"Kiến trúc Transformer và cơ chế attention\", \"label\": \"Required\", \"evidence\": \"Transformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó. [slide D1/8]\", \"source\": \"SLIDE\", \"review\": \"Cần nắm Transformer dùng attention để mỗi token nhìn sang token quan trọng khác, thay vì xử lý tuần tự.\"}, {\"name\": \"Token và token hóa\", \"label\": \"Required\", \"evidence\": \"Model không nhìn từ nguyên vẹn. Nó cắt văn bản thành các mảnh nhỏ gọi là token: có từ là một mảnh, có từ vỡ ba bốn mảnh, cả dấu câu và khoảng trắng cũng là mảnh. Ví dụ: \\\"Hello world\\\" ≈ 2 token, nhưng \\\"Xin chào\\\" có thể tới 3–4 token. [slide D1/13]\", \"source\": \"SLIDE\", \"review\": \"Cần hiểu model đọc token chứ không đọc từ/ký tự; tiếng Việt tốn token hơn tiếng Anh.\"}, {\"name\": \"Cơ chế dự đoán next token\", \"label\": \"Required\", \"evidence\": \"Sinh văn bản = đoán → nối vào câu → đoán tiếp. Mỗi token mới được nối vào ngữ cảnh, rồi model chạy lại từ đầu — vòng lặp predict → append → rerun. [slide D1/12]\", \"source\": \"SLIDE\", \"review\": \"Cần nắm LLM sinh văn bản bằng vòng lặp dự đoán token kế tiếp rồi nối vào ngữ cảnh và chạy lại.\"}], \"questions\": [{\"prereq\": \"Kiến trúc Transformer và cơ chế attention\", \"stem\": \"Theo slide Day 1, Transformer là bước ngoặt vì nó cho phép mô hình hiểu ngôn ngữ theo cách nào?\", \"options\": [\"Mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước\", \"Mỗi từ chỉ được xử lý độc lập, không liên hệ với các từ khác trong câu\", \"Mô hình chỉ đọc từng ký tự từ trái sang phải và không dùng ngữ cảnh\"], \"answer\": \"A\", \"source\": \"SLIDE\"}, {\"prereq\": \"Token và token hóa\", \"stem\": \"Theo slide Day 1, phát biểu nào đúng về token?\", \"options\": [\"Model đọc từ nguyên vẹn, mỗi từ luôn là một token\", \"Model cắt văn bản thành các mảnh nhỏ gọi là token; có từ là một mảnh, có từ vỡ ba bốn mảnh\", \"Token chỉ gồm chữ cái, không tính dấu câu và khoảng trắng\"], \"answer\": \"B\", \"source\": \"SLIDE\"}, {\"prereq\": \"Cơ chế dự đoán next token\", \"stem\": \"Theo slide Day 1, quá trình sinh văn bản của LLM diễn ra theo vòng lặp nào?\", \"options\": [\"Encode → decode → dừng\", \"Predict → append → rerun\", \"Train → test → deploy\"], \"answer\": \"B\", \"source\": \"SLIDE\"}], \"refusal\": false, \"refusal_reason\": \"\"}",
+ "parsed": {
+  "prereqs": [
+   {
+    "name": "Kiến trúc Transformer và cơ chế attention",
+    "label": "Required",
+    "evidence": "Transformer là bước ngoặt vì nó cho mô hình hiểu ngôn ngữ theo cách linh hoạt hơn: mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước → trở thành nền móng kỹ thuật cho GPT, BERT và toàn bộ làn sóng LLM sau đó. [slide D1/8]",
+    "source": "SLIDE",
+    "review": "Cần nắm Transformer dùng attention để mỗi token nhìn sang token quan trọng khác, thay vì xử lý tuần tự."
+   },
+   {
+    "name": "Token và token hóa",
+    "label": "Required",
+    "evidence": "Model không nhìn từ nguyên vẹn. Nó cắt văn bản thành các mảnh nhỏ gọi là token: có từ là một mảnh, có từ vỡ ba bốn mảnh, cả dấu câu và khoảng trắng cũng là mảnh. Ví dụ: \"Hello world\" ≈ 2 token, nhưng \"Xin chào\" có thể tới 3–4 token. [slide D1/13]",
+    "source": "SLIDE",
+    "review": "Cần hiểu model đọc token chứ không đọc từ/ký tự; tiếng Việt tốn token hơn tiếng Anh."
+   },
+   {
+    "name": "Cơ chế dự đoán next token",
+    "label": "Required",
+    "evidence": "Sinh văn bản = đoán → nối vào câu → đoán tiếp. Mỗi token mới được nối vào ngữ cảnh, rồi model chạy lại từ đầu — vòng lặp predict → append → rerun. [slide D1/12]",
+    "source": "SLIDE",
+    "review": "Cần nắm LLM sinh văn bản bằng vòng lặp dự đoán token kế tiếp rồi nối vào ngữ cảnh và chạy lại."
+   }
+  ],
+  "questions": [
+   {
+    "prereq": "Kiến trúc Transformer và cơ chế attention",
+    "stem": "Theo slide Day 1, Transformer là bước ngoặt vì nó cho phép mô hình hiểu ngôn ngữ theo cách nào?",
+    "options": [
+     "Mỗi từ có thể nhìn sang những từ quan trọng khác trong cả câu, thay vì chỉ đi tuần tự từng bước",
+     "Mỗi từ chỉ được xử lý độc lập, không liên hệ với các từ khác trong câu",
+     "Mô hình chỉ đọc từng ký tự từ trái sang phải và không dùng ngữ cảnh"
+    ],
+    "answer": "A",
+    "source": "SLIDE"
+   },
+   {
+    "prereq": "Token và token hóa",
+    "stem": "Theo slide Day 1, phát biểu nào đúng về token?",
+    "options": [
+     "Model đọc từ nguyên vẹn, mỗi từ luôn là một token",
+     "Model cắt văn bản thành các mảnh nhỏ gọi là token; có từ là một mảnh, có từ vỡ ba bốn mảnh",
+     "Token chỉ gồm chữ cái, không tính dấu câu và khoảng trắng"
+    ],
+    "answer": "B",
+    "source": "SLIDE"
+   },
+   {
+    "prereq": "Cơ chế dự đoán next token",
+    "stem": "Theo slide Day 1, quá trình sinh văn bản của LLM diễn ra theo vòng lặp nào?",
+    "options": [
+     "Encode → decode → dừng",
+     "Predict → append → rerun",
+     "Train → test → deploy"
+    ],
+    "answer": "B",
+    "source": "SLIDE"
+   }
+  ],
+  "refusal": false,
+  "refusal_reason": ""
+ },
+ "validation": {
+  "ok": true,
+  "errors": []
+ },
+ "expected": "3 cau, prereq_id + answer + source that",
+ "hard_test": "HT4"
+}

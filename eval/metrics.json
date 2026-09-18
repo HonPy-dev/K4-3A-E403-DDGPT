@@ -1,0 +1,13 @@
+{
+  "updated_at": "2026-09-17",
+  "run": "run-live-cp4-1",
+  "transport": "server.py -> deepseek-chat",
+  "n": 20,
+  "f_pct": 100,
+  "c_pct": 80,
+  "r_pct": 100,
+  "strict_pass_pct": 80,
+  "hallucinated_citations": 0,
+  "failed_cases": ["C03", "C11", "C13", "C21"],
+  "note": "Chi tiết và quy tắc chấm: eval/results-run-live.md. C18 đã pass sau sửa boundary Helpful/Required."
+}
