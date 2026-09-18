@@ -8,7 +8,7 @@
 
 | Họ và Tên | Mã Học Viên | Vai trò chính | Phần việc đảm nhiệm trong dự án |
 |---|---|---|---|
-| Trần Nguyễn Thái Duy | 2A202602991 | Evidence | Khảo sát/phỏng vấn học viên + mining transcript/slide, ghi log evidence CP1 |
+| Trần Nguyễn Thái Duy | 2A202602991 | Phát triển giao diện & luồng sử dụng | Xây dựng luồng chuẩn bị bài → tự kiểm tra → mở nguồn ôn → vào bài học. |
 | Đinh Mạnh Dũng | 2A202602975 | Spec | Viết spec.md: prerequisite definition, product scope, bảng impact 3 candidates |
 | Nguyễn Hồng Phi | 2A202602750 | AI | Prompt/retrieval/grounding: extract outcomes, classify Required/Helpful/Taught, route nguồn |
 | Phạm Thành Trung | 2A202602949 | Prototype | UI/interaction: mock CP2 (`vlearn-ready-cp2.html`), flow bấm thử, Prep Card |
