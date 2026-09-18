@@ -4,12 +4,12 @@
 
 ## Vai trò và đóng góp
 
-Tôi phụ trách prompt, grounding và kiểm tra các phản hồi của mô hình. Tôi xây dựng cách giới hạn nguồn Tier-1, yêu cầu JSON có cấu trúc và kiểm tra citation trước khi kết quả được đưa lên giao diện. Tôi cũng tham gia chạy golden set và lưu trace để mỗi kết luận đều có thể truy ngược.
+Tôi đảm nhận vai trò **Phát triển giao diện & luồng sử dụng**, phụ trách **xây dựng luồng chuẩn bị bài → tự kiểm tra → mở nguồn ôn → vào bài học**. Tôi tham gia thiết kế và hiện thực hóa các bước tương tác của học viên trên giao diện VLearn Ready: từ lúc tiếp cận Prep Card của bài học mới, thực hiện bài kiểm tra trắc nghiệm độ sẵn sàng (readiness check), mở nhanh các nguồn tài liệu ôn tập tương ứng với phần kiến thức còn thiếu, cho đến khi nhận kết quả đánh giá (Ready / Partially Ready / Not Ready) và chuyển tiếp vào bài học.
 
 ## Điều tôi học được
 
-Một prompt rõ chưa đủ để tạo sản phẩm AI đáng tin cậy. Hệ thống còn cần allowlist nguồn, validator và tình huống từ chối khi thiếu căn cứ. Việc giữ lại các case thất bại giúp nhóm thấy lỗi phân loại Helpful/Required có tính lặp lại và sửa đúng nguyên nhân.
+Một giao diện ứng dụng AI hiệu quả không chỉ hiển thị kết quả sinh ra mà cần dẫn dắt người dùng qua một luồng tương tác liền mạch, rõ ràng và có tính hỗ trợ cao. Việc chia nhỏ hành trình học tập thành 4 bước cụ thể (chuẩn bị → tự kiểm tra → xem nguồn ôn → vào bài) giúp học viên không bị ngợp, hiểu rõ lý do tại sao cần ôn tập một khái niệm và chủ động kiểm soát tiến độ học tập. Tôi cũng hiểu sâu hơn về tầm quan trọng của việc phản hồi trạng thái minh bạch (kết quả kiểm tra, giải thích đáp án, trích dẫn tài liệu) để tạo dựng niềm tin cho người học.
 
 ## Điều chưa tốt và hướng cải thiện
 
-Một số case mơ hồ vẫn không đạt strict vì mô hình trả lời hợp lý nhưng sai format hoặc quyết định quá mạnh. Nếu có thêm thời gian, tôi sẽ tách confidence khỏi label, bổ sung regression test cho C03/C11/C13/C21 và thử nhiều lần chạy để đo độ ổn định.
+Thời gian thử nghiệm thực tế với người dùng ngoài nhóm còn hạn chế, một số thao tác chuyển bước trên giao diện mobile có thể tối ưu hơn nữa để tiện dụng hơn. Nếu có thêm thời gian, tôi sẽ bổ sung thêm các vi tương tác (micro-interactions) trực quan sinh động hơn khi người học làm quiz và đạt mốc sẵn sàng, đồng thời tiến hành thêm các buổi user testing để tinh chỉnh luồng trải nghiệm người dùng dựa trên phản hồi định tính chi tiết.
